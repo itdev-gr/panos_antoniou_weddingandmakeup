@@ -1,0 +1,95 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PlaceholderImage from '../../components/ui/PlaceholderImage.astro';
+
+const posts = [
+  {
+    title: "How to Have the Perfect Santorini Dream Wedding",
+    slug: "/blog/santorini-dream-wedding",
+    excerpt: "Santorini is one of the most sought-after wedding destinations in the world. Here's everything you need to know to plan your perfect day on this magical island.",
+    date: "June 23, 2021",
+    image: "/images/portfolio/santorini-bridal-looks-3.jpg",
+    category: "Wedding Planning",
+  },
+  {
+    title: "How to Select Your Wedding Beautician",
+    slug: "/blog/wedding-beautician",
+    excerpt: "Choosing the right makeup artist for your wedding is one of the most important decisions you'll make. Learn what to look for and how to find your perfect match.",
+    date: "June 4, 2021",
+    image: "/images/portfolio/glam-makeup-hair.jpg",
+    category: "Bridal Tips",
+  },
+  {
+    title: "Get Access to the Best Wedding Makeup Services",
+    slug: "/blog/best-wedding-makeup-services",
+    excerpt: "From budgeting to trials, discover the five essential factors that will help you secure the best wedding makeup services for your big day.",
+    date: "May 15, 2021",
+    image: "/images/portfolio/luxury-glam-brides-santorini.jpg",
+    category: "Bridal Beauty",
+  },
+];
+---
+
+<PageLayout
+  title="Blog — Panos Antoniou | Wedding Makeup & Hair"
+  description="Bridal beauty tips, wedding planning advice, and inspiration from Panos Antoniou."
+  transparentHeader={true}
+>
+  <!-- Cinematic Hero -->
+  <section class="relative min-h-[40vh] lg:min-h-[50vh] overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/portfolio/santorini-bridal-looks-3.jpg" alt="" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-b from-brown-dark/30 via-brown-dark/50 to-brown-dark/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-brown-dark/60 via-transparent to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 container-content px-6 lg:px-12 flex items-end pb-16 lg:pb-20 min-h-[40vh] lg:min-h-[50vh]">
+      <div class="max-w-xl">
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-cream/50 mb-4" data-reveal>
+          Insights & Inspiration
+        </p>
+        <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-cream leading-tight mb-4" data-reveal>
+          Blog
+        </h1>
+        <div class="w-12 h-px bg-gold-muted/60 mb-5" data-reveal></div>
+        <p class="text-base text-cream/60 leading-relaxed max-w-md" data-reveal>
+          Tips, stories, and inspiration from the world of luxury bridal beauty.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts -->
+  <section class="relative section-padding bg-cream">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-muted/40 to-transparent"></div>
+
+    <div class="container-content">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post, i) => (
+          <a
+            href={post.slug}
+            class="group block"
+            data-reveal
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <div class="aspect-[4/3] overflow-hidden rounded-sm mb-5">
+              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-[10px] font-sans font-medium tracking-widest uppercase text-accent bg-sand px-3 py-1 rounded-full">
+                {post.category}
+              </span>
+              <span class="text-xs text-accent-light/60">{post.date}</span>
+            </div>
+            <h3 class="text-lg font-serif italic text-brown-dark mb-2 group-hover:text-accent transition-colors duration-300">
+              {post.title}
+            </h3>
+            <p class="text-sm text-accent-light leading-relaxed">
+              {post.excerpt}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

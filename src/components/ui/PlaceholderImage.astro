@@ -1,0 +1,35 @@
+---
+interface Props {
+  src?: string;
+  alt?: string;
+  label?: string;
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+
+const { src, alt = '', label = 'Photo', variant = 'light', class: className = '' } = Astro.props;
+
+const gradientClasses = variant === 'dark'
+  ? 'from-brown-dark via-accent to-brown'
+  : 'from-sand via-gold/30 to-sand-dark';
+
+const textClasses = variant === 'dark'
+  ? 'text-cream/40'
+  : 'text-accent/40';
+
+const lineClasses = variant === 'dark'
+  ? 'bg-cream/20'
+  : 'bg-accent/30';
+---
+
+{src ? (
+  <img src={src} alt={alt} class:list={[`w-full h-full object-cover`, className]} loading="lazy" />
+) : (
+  <div class:list={[`w-full h-full bg-gradient-to-br ${gradientClasses} flex items-center justify-center`, className]}>
+    <div class="text-center">
+      <div class:list={[`w-10 h-px mx-auto mb-3`, lineClasses]}></div>
+      <p class:list={[`text-xs tracking-widest-plus uppercase font-sans`, textClasses]}>{label}</p>
+      <div class:list={[`w-10 h-px mx-auto mt-3`, lineClasses]}></div>
+    </div>
+  </div>
+)}

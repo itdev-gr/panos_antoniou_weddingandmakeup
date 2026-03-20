@@ -1,0 +1,38 @@
+---
+import Button from '../ui/Button.astro';
+import PlaceholderImage from '../ui/PlaceholderImage.astro';
+---
+
+<section class="relative section-padding bg-cream">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-muted/40 to-transparent"></div>
+  <div class="container-content">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Image -->
+      <div class="relative" data-reveal>
+        <div class="aspect-[4/5] rounded-sm overflow-hidden">
+          <PlaceholderImage src="/images/about/panos-portrait.jpg" alt="Panos Antoniou" label="Panos Antoniou" />
+        </div>
+        <!-- Decorative frame offset -->
+        <div class="absolute -bottom-4 -right-4 w-full h-full border border-gold-muted rounded-sm -z-10"></div>
+      </div>
+
+      <!-- Text -->
+      <div data-reveal style="transition-delay: 150ms">
+        <p class="text-xs font-sans font-medium tracking-ultra-wide uppercase text-accent-light mb-4">
+          Meet the Artist
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-brown-dark mb-6">
+          Panos Antoniou
+        </h2>
+        <div class="w-12 h-px bg-gold-muted mb-6"></div>
+        <p class="text-base text-accent-light leading-relaxed mb-4">
+          With over 26 years of experience, Panos Antoniou has established himself as one of the most sought-after bridal beauty artists in Greece and beyond. His work is defined by discretion, precision, and a deep understanding of modern luxury.
+        </p>
+        <p class="text-base text-accent-light leading-relaxed mb-8">
+          Based in Santorini, Panos serves brides across the Greek islands, Athens, Amsterdam, and worldwide destinations — transforming wedding mornings into unforgettable experiences.
+        </p>
+        <Button variant="outline" href="/about">Read Full Story</Button>
+      </div>
+    </div>
+  </div>
+</section>

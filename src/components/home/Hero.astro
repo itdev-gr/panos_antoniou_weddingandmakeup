@@ -1,0 +1,45 @@
+---
+import Button from '../ui/Button.astro';
+import PlaceholderImage from '../ui/PlaceholderImage.astro';
+---
+
+<section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0">
+    <PlaceholderImage src="/images/hero/hero-bridal.jpg" alt="" label="Hero Bridal" variant="dark" />
+    <div class="absolute inset-0 bg-gradient-to-b from-brown-dark/40 via-brown-dark/50 to-brown-dark/70"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+    <p class="text-[11px] font-sans font-medium tracking-ultra-wide uppercase text-cream/60 mb-4" data-reveal>
+      Bridal Beauty &middot; Santorini &middot; Worldwide
+    </p>
+
+    <h1 class="text-4xl md:text-5xl lg:text-display-xl font-serif italic text-cream leading-tight mb-4" data-reveal>
+      Panos Antoniou
+    </h1>
+
+    <div class="w-12 h-px bg-cream/30 mx-auto mb-5" data-reveal></div>
+
+    <p class="text-sm md:text-base font-sans text-cream/70 leading-relaxed max-w-lg mx-auto mb-3" data-reveal>
+      Weddings Makeup & Hair
+    </p>
+    <p class="text-xs font-sans text-cream/50 tracking-wider mb-10" data-reveal>
+      26+ years of crafting unforgettable bridal beauty
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
+      <Button variant="primary" href="/services" size="lg">Discover Services</Button>
+      <Button variant="outline-light" href="/contact" size="lg">Get in Touch</Button>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce-slow">
+    <span class="text-[9px] font-sans tracking-widest uppercase text-cream/40">Scroll</span>
+    <svg class="w-4 h-4 text-cream/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7" />
+    </svg>
+  </div>
+</section>
