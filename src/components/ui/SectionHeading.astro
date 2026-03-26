@@ -14,25 +14,25 @@ const { eyebrow, title, description, align = 'center', light = false } = Astro.p
   {eyebrow && (
     <p class:list={[
       "text-xs font-sans font-medium tracking-ultra-wide uppercase mb-4",
-      light ? "text-cream/60" : "text-accent-light",
+      light ? "text-white/60" : "text-gold",
     ]}>
       {eyebrow}
     </p>
   )}
   <h2 class:list={[
     "text-display-sm md:text-display lg:text-display-lg font-serif italic",
-    light ? "text-cream" : "text-brown-dark",
+    light ? "text-white" : "text-charcoal",
   ]}>
     {title}
   </h2>
   {align === 'center' && (
-    <div class:list={["w-12 h-px mx-auto mt-5", light ? "bg-cream/30" : "bg-gold-muted"]} />
+    <div class:list={["w-12 h-px mx-auto mt-5", light ? "bg-white/30" : "bg-gold"]} />
   )}
   {description && (
     <p class:list={[
       "mt-5 text-base max-w-2xl leading-relaxed",
       align === 'center' ? 'mx-auto' : '',
-      light ? "text-cream/60" : "text-accent-light",
+      light ? "text-white/60" : "text-grey",
     ]}>
       {description}
     </p>
