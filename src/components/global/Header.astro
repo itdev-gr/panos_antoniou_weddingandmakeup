@@ -37,7 +37,7 @@ const navLinks = [
           href={link.href}
           class:list={[
             "text-xs font-sans font-medium tracking-widest-plus uppercase transition-colors duration-300",
-            transparent ? "text-cream/80 hover:text-cream" : "text-charcoal/70 hover:text-charcoal",
+            transparent ? "text-white/80 hover:text-white" : "text-charcoal/70 hover:text-charcoal",
           ]}
         >
           {link.label}
@@ -52,7 +52,7 @@ const navLinks = [
         class:list={[
           "hidden md:inline-flex px-6 py-2.5 text-xs font-sans font-medium tracking-widest uppercase border transition-all duration-300 rounded-sm",
           transparent
-            ? "border-cream/40 text-cream hover:bg-cream hover:text-charcoal"
+            ? "border-white/40 text-white hover:bg-white hover:text-charcoal"
             : "border-forest-green text-forest-green hover:bg-forest-green hover:text-white",
         ]}
       >
@@ -65,9 +65,9 @@ const navLinks = [
         class="lg:hidden flex flex-col gap-1.5 p-2"
         aria-label="Open menu"
       >
-        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-cream" : "bg-charcoal"]} />
-        <span class:list={["block w-4 h-px transition-all duration-300 ml-auto", transparent ? "bg-cream" : "bg-charcoal"]} />
-        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-cream" : "bg-charcoal"]} />
+        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-white" : "bg-charcoal"]} />
+        <span class:list={["block w-4 h-px transition-all duration-300 ml-auto", transparent ? "bg-white" : "bg-charcoal"]} />
+        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-white" : "bg-charcoal"]} />
       </button>
     </div>
   </div>
@@ -154,15 +154,15 @@ const navLinks = [
         header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
         header.classList.remove('header-transparent');
         header.querySelectorAll('a, span').forEach((el) => {
-          el.classList.remove('text-cream/80', 'text-cream');
+          el.classList.remove('text-white/80', 'text-white');
           el.classList.add('text-charcoal/70');
         });
-        header.querySelectorAll('.border-cream\\/40').forEach((el) => {
-          el.classList.remove('border-cream/40', 'text-cream', 'hover:bg-cream', 'hover:text-charcoal');
+        header.querySelectorAll('.border-white\\/40').forEach((el) => {
+          el.classList.remove('border-white/40', 'text-white', 'hover:bg-white', 'hover:text-charcoal');
           el.classList.add('border-forest-green', 'text-forest-green', 'hover:bg-forest-green', 'hover:text-white');
         });
         header.querySelectorAll('#mobile-menu-btn span').forEach((el) => {
-          el.classList.remove('bg-cream');
+          el.classList.remove('bg-white');
           el.classList.add('bg-charcoal');
         });
       } else {
@@ -171,18 +171,18 @@ const navLinks = [
         // Restore nav link colors
         header.querySelectorAll('a, span').forEach((el) => {
           el.classList.remove('text-charcoal/70');
-          el.classList.add('text-cream/80');
+          el.classList.add('text-white/80');
         });
         // Restore Book Now button
         const bookBtn = header.querySelector('.border-forest-green');
         if (bookBtn) {
           bookBtn.classList.remove('border-forest-green', 'text-forest-green', 'hover:bg-forest-green', 'hover:text-white');
-          bookBtn.classList.add('border-cream/40', 'text-cream', 'hover:bg-cream', 'hover:text-charcoal');
+          bookBtn.classList.add('border-white/40', 'text-white', 'hover:bg-white', 'hover:text-charcoal');
         }
         // Restore hamburger
         header.querySelectorAll('#mobile-menu-btn span').forEach((el) => {
           el.classList.remove('bg-charcoal');
-          el.classList.add('bg-cream');
+          el.classList.add('bg-white');
         });
       }
     });
