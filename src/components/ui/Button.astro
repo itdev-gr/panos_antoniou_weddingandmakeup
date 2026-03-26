@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'outline-light';
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-light' | 'gold';
   href?: string;
   size?: 'sm' | 'md' | 'lg';
   class?: string;
@@ -15,10 +15,11 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  primary: 'bg-accent text-cream hover:bg-brown border border-accent hover:border-brown',
-  secondary: 'bg-cream text-brown hover:bg-sand border border-cream',
-  outline: 'bg-transparent text-accent border border-accent hover:bg-accent hover:text-cream',
-  'outline-light': 'bg-transparent text-cream border border-cream/40 hover:bg-cream hover:text-brown',
+  primary: 'bg-forest-green text-white hover:bg-green-light border border-forest-green hover:border-green-light',
+  secondary: 'bg-white text-charcoal hover:bg-off-white border border-white',
+  outline: 'bg-transparent text-charcoal border border-charcoal hover:bg-charcoal hover:text-white',
+  'outline-light': 'bg-transparent text-white border border-white/40 hover:bg-white hover:text-charcoal',
+  gold: 'bg-transparent text-gold border border-gold hover:bg-gold hover:text-white',
 };
 
 const baseClasses = `inline-flex items-center justify-center font-sans font-medium tracking-widest-plus uppercase rounded-sm transition-all duration-300 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
