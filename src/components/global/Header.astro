@@ -5,12 +5,11 @@ interface Props {
 const { transparent = false } = Astro.props;
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "The Bridal Lounge", href: "/bridal-lounge" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
 ];
 ---
 
@@ -18,7 +17,7 @@ const navLinks = [
   id="main-header"
   class:list={[
     "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-    transparent ? "header-transparent" : "bg-cream/95 backdrop-blur-md shadow-sm",
+    transparent ? "header-transparent" : "bg-white/95 backdrop-blur-md shadow-sm",
   ]}
 >
   <div class="container-content flex items-center justify-between px-6 py-5 lg:px-12 lg:py-6">
@@ -38,7 +37,7 @@ const navLinks = [
           href={link.href}
           class:list={[
             "text-xs font-sans font-medium tracking-widest-plus uppercase transition-colors duration-300",
-            transparent ? "text-cream/80 hover:text-cream" : "text-brown/70 hover:text-brown",
+            transparent ? "text-cream/80 hover:text-cream" : "text-charcoal/70 hover:text-charcoal",
           ]}
         >
           {link.label}
@@ -53,8 +52,8 @@ const navLinks = [
         class:list={[
           "hidden md:inline-flex px-6 py-2.5 text-xs font-sans font-medium tracking-widest uppercase border transition-all duration-300 rounded-sm",
           transparent
-            ? "border-cream/40 text-cream hover:bg-cream hover:text-brown"
-            : "border-accent text-accent hover:bg-accent hover:text-cream",
+            ? "border-cream/40 text-cream hover:bg-cream hover:text-charcoal"
+            : "border-forest-green text-forest-green hover:bg-forest-green hover:text-white",
         ]}
       >
         Book Now
@@ -66,9 +65,9 @@ const navLinks = [
         class="lg:hidden flex flex-col gap-1.5 p-2"
         aria-label="Open menu"
       >
-        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-cream" : "bg-brown"]} />
-        <span class:list={["block w-4 h-px transition-all duration-300 ml-auto", transparent ? "bg-cream" : "bg-brown"]} />
-        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-cream" : "bg-brown"]} />
+        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-cream" : "bg-charcoal"]} />
+        <span class:list={["block w-4 h-px transition-all duration-300 ml-auto", transparent ? "bg-cream" : "bg-charcoal"]} />
+        <span class:list={["block w-6 h-px transition-all duration-300", transparent ? "bg-cream" : "bg-charcoal"]} />
       </button>
     </div>
   </div>
@@ -79,14 +78,14 @@ const navLinks = [
   id="mobile-nav"
   class="fixed inset-0 z-[60] pointer-events-none opacity-0 transition-opacity duration-300"
 >
-  <div class="absolute inset-0 bg-brown-dark/50" id="mobile-nav-backdrop"></div>
+  <div class="absolute inset-0 bg-near-black/50" id="mobile-nav-backdrop"></div>
   <div
     id="mobile-nav-panel"
-    class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-cream transform translate-x-full transition-transform duration-500 ease-out shadow-2xl"
+    class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white transform translate-x-full transition-transform duration-500 ease-out shadow-2xl"
   >
     <div class="flex flex-col h-full p-8">
       <button id="mobile-nav-close" class="self-end p-2 mb-8" aria-label="Close menu">
-        <svg class="w-6 h-6 text-brown" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="w-6 h-6 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
@@ -95,7 +94,7 @@ const navLinks = [
         {navLinks.map((link) => (
           <a
             href={link.href}
-            class="text-lg font-serif italic text-brown/80 hover:text-brown py-3 border-b border-sand transition-colors duration-200"
+            class="text-lg font-serif italic text-charcoal/80 hover:text-charcoal py-3 border-b border-gray-100 transition-colors duration-200"
           >
             {link.label}
           </a>
@@ -105,15 +104,15 @@ const navLinks = [
       <div class="mt-auto pt-8">
         <a
           href="/contact"
-          class="block text-center px-6 py-3 bg-accent text-cream text-xs font-sans font-medium tracking-widest uppercase rounded-sm hover:bg-brown transition-colors duration-300"
+          class="block text-center px-6 py-3 bg-forest-green text-white text-xs font-sans font-medium tracking-widest uppercase rounded-sm hover:bg-green-light transition-colors duration-300"
         >
           Book Now
         </a>
         <div class="flex justify-center gap-6 mt-6">
-          <a href="https://instagram.com/weddingsmakeupandhair" target="_blank" rel="noopener" class="text-accent-light hover:text-accent transition-colors" aria-label="Instagram">
+          <a href="https://instagram.com/weddingsmakeupandhair" target="_blank" rel="noopener" class="text-grey hover:text-forest-green transition-colors" aria-label="Instagram">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
-          <a href="https://facebook.com/panosantonioumakeuprtist" target="_blank" rel="noopener" class="text-accent-light hover:text-accent transition-colors" aria-label="Facebook">
+          <a href="https://facebook.com/panosantonioumakeuprtist" target="_blank" rel="noopener" class="text-grey hover:text-forest-green transition-colors" aria-label="Facebook">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
         </div>
@@ -152,37 +151,37 @@ const navLinks = [
   if (header?.classList.contains('header-transparent')) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 80) {
-        header.classList.add('bg-cream/95', 'backdrop-blur-md', 'shadow-sm');
+        header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
         header.classList.remove('header-transparent');
         header.querySelectorAll('a, span').forEach((el) => {
           el.classList.remove('text-cream/80', 'text-cream');
-          el.classList.add('text-brown/70');
+          el.classList.add('text-charcoal/70');
         });
         header.querySelectorAll('.border-cream\\/40').forEach((el) => {
-          el.classList.remove('border-cream/40', 'text-cream', 'hover:bg-cream', 'hover:text-brown');
-          el.classList.add('border-accent', 'text-accent', 'hover:bg-accent', 'hover:text-cream');
+          el.classList.remove('border-cream/40', 'text-cream', 'hover:bg-cream', 'hover:text-charcoal');
+          el.classList.add('border-forest-green', 'text-forest-green', 'hover:bg-forest-green', 'hover:text-white');
         });
         header.querySelectorAll('#mobile-menu-btn span').forEach((el) => {
           el.classList.remove('bg-cream');
-          el.classList.add('bg-brown');
+          el.classList.add('bg-charcoal');
         });
       } else {
-        header.classList.remove('bg-cream/95', 'backdrop-blur-md', 'shadow-sm');
+        header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
         header.classList.add('header-transparent');
         // Restore nav link colors
         header.querySelectorAll('a, span').forEach((el) => {
-          el.classList.remove('text-brown/70');
+          el.classList.remove('text-charcoal/70');
           el.classList.add('text-cream/80');
         });
         // Restore Book Now button
-        const bookBtn = header.querySelector('.border-accent');
+        const bookBtn = header.querySelector('.border-forest-green');
         if (bookBtn) {
-          bookBtn.classList.remove('border-accent', 'text-accent', 'hover:bg-accent', 'hover:text-cream');
-          bookBtn.classList.add('border-cream/40', 'text-cream', 'hover:bg-cream', 'hover:text-brown');
+          bookBtn.classList.remove('border-forest-green', 'text-forest-green', 'hover:bg-forest-green', 'hover:text-white');
+          bookBtn.classList.add('border-cream/40', 'text-cream', 'hover:bg-cream', 'hover:text-charcoal');
         }
         // Restore hamburger
         header.querySelectorAll('#mobile-menu-btn span').forEach((el) => {
-          el.classList.remove('bg-brown');
+          el.classList.remove('bg-charcoal');
           el.classList.add('bg-cream');
         });
       }
