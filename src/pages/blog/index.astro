@@ -31,28 +31,28 @@ const posts = [
 ---
 
 <PageLayout
-  title="Blog — Panos Antoniou | Wedding Makeup & Hair"
-  description="Bridal beauty tips, wedding planning advice, and inspiration from Panos Antoniou."
+  title="Wedding Planning & Bridal Beauty Blog | Panos Antoniou Weddings Santorini"
+  description="Wedding tips, bridal beauty insights, and Santorini inspiration from Panos Antoniou Weddings. Plan your dream wedding with expert guidance."
   transparentHeader={true}
 >
   <!-- Cinematic Hero -->
   <section class="relative min-h-[40vh] lg:min-h-[50vh] overflow-hidden">
     <div class="absolute inset-0">
       <img src="/images/portfolio/santorini-bridal-looks-3.jpg" alt="" class="w-full h-full object-cover object-center" />
-      <div class="absolute inset-0 bg-gradient-to-b from-brown-dark/30 via-brown-dark/50 to-brown-dark/80"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-brown-dark/60 via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-near-black/30 via-near-black/50 to-near-black/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-near-black/60 via-transparent to-transparent"></div>
     </div>
 
     <div class="relative z-10 container-content px-6 lg:px-12 flex items-end pb-16 lg:pb-20 min-h-[40vh] lg:min-h-[50vh]">
       <div class="max-w-xl">
-        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-cream/50 mb-4" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-white/50 mb-4" data-reveal>
           Insights & Inspiration
         </p>
-        <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-cream leading-tight mb-4" data-reveal>
+        <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white leading-tight mb-4" data-reveal>
           Blog
         </h1>
-        <div class="w-12 h-px bg-gold-muted/60 mb-5" data-reveal></div>
-        <p class="text-base text-cream/60 leading-relaxed max-w-md" data-reveal>
+        <div class="w-12 h-px bg-gold/60 mb-5" data-reveal></div>
+        <p class="text-base text-white/60 leading-relaxed max-w-md" data-reveal>
           Tips, stories, and inspiration from the world of luxury bridal beauty.
         </p>
       </div>
@@ -60,8 +60,8 @@ const posts = [
   </section>
 
   <!-- Posts -->
-  <section class="relative section-padding bg-cream">
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-muted/40 to-transparent"></div>
+  <section class="relative section-padding bg-white">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
 
     <div class="container-content">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -76,15 +76,15 @@ const posts = [
               <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-[10px] font-sans font-medium tracking-widest uppercase text-accent bg-sand px-3 py-1 rounded-full">
+              <span class="text-[10px] font-sans font-medium tracking-widest uppercase text-forest-green bg-off-white px-3 py-1 rounded-full">
                 {post.category}
               </span>
-              <span class="text-xs text-accent-light/60">{post.date}</span>
+              <span class="text-xs text-grey/60">{post.date}</span>
             </div>
-            <h3 class="text-lg font-serif italic text-brown-dark mb-2 group-hover:text-accent transition-colors duration-300">
+            <h3 class="text-lg font-serif italic text-charcoal mb-2 group-hover:text-forest-green transition-colors duration-300">
               {post.title}
             </h3>
-            <p class="text-sm text-accent-light leading-relaxed">
+            <p class="text-sm text-grey leading-relaxed">
               {post.excerpt}
             </p>
           </a>
