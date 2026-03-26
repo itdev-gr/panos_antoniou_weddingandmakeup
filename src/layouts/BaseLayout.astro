@@ -48,7 +48,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "telephone": "+30-695-562-8019",
       "email": "events@weddingsmakeupandhair.com",
       "url": "https://weddingsmakeupandhair.com",
-      "areaServed": ["Santorini", "Mykonos", "Athens", "Zakynthos", "Chalkida", "Amsterdam"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pyrgos Village",
+        "addressRegion": "Santorini",
+        "addressCountry": "GR"
+      },
+      "areaServed": ["Santorini", "Mykonos", "Athens", "Greece", "Worldwide"],
       "priceRange": "$$$$"
     })} />
   </head>
