@@ -1,45 +1,35 @@
 ---
-import Button from '../ui/Button.astro';
-import PlaceholderImage from '../ui/PlaceholderImage.astro';
 ---
+<section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+  <img
+    src="/images/hero/hero-bridal.jpg"
+    alt="Luxury bridal makeup and hair Santorini Panos Antoniou"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60"></div>
 
-<section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-  <!-- Background -->
-  <div class="absolute inset-0">
-    <PlaceholderImage src="/images/hero/hero-bridal.jpg" alt="" label="Hero Bridal" variant="dark" />
-    <div class="absolute inset-0 bg-gradient-to-b from-brown-dark/40 via-brown-dark/50 to-brown-dark/70"></div>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
-    <p class="text-[11px] font-sans font-medium tracking-ultra-wide uppercase text-cream/60 mb-4" data-reveal>
-      Bridal Beauty &middot; Santorini &middot; Worldwide
+  <div class="relative z-10 px-6 max-w-3xl" data-reveal>
+    <p class="text-[11px] font-sans font-medium tracking-[0.25em] uppercase text-white/60 mb-6">
+      Santorini · Greece · Worldwide
     </p>
-
-    <h1 class="text-4xl md:text-5xl lg:text-display-xl font-serif italic text-cream leading-tight mb-4" data-reveal>
+    <h1 class="font-serif text-display-xl font-light tracking-wide mb-5">
       Panos Antoniou
     </h1>
-
-    <div class="w-12 h-px bg-cream/30 mx-auto mb-5" data-reveal></div>
-
-    <p class="text-sm md:text-base font-sans text-cream/70 leading-relaxed max-w-lg mx-auto mb-3" data-reveal>
-      Weddings Makeup & Hair
+    <p class="font-serif text-xl md:text-2xl font-light italic text-white/85 mb-3">
+      The Mastery of Bridal Beauty &amp; Wedding Design
     </p>
-    <p class="text-xs font-sans text-cream/50 tracking-wider mb-10" data-reveal>
-      26+ years of crafting unforgettable bridal beauty
+    <p class="text-sm font-light text-white/60 max-w-lg mx-auto leading-relaxed mb-10">
+      Crafting timeless elegance and bespoke wedding experiences in Santorini and beyond.
     </p>
-
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
-      <Button variant="primary" href="/services" size="lg">Discover Services</Button>
-      <Button variant="outline-light" href="/contact" size="lg">Get in Touch</Button>
-    </div>
+    <a
+      href="/contact"
+      class="inline-flex items-center justify-center px-9 py-4 bg-forest-green text-white text-xs font-sans font-medium tracking-[0.12em] uppercase hover:bg-green-light transition-all duration-300"
+    >
+      Start Planning Your Wedding
+    </a>
   </div>
 
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce-slow">
-    <span class="text-[9px] font-sans tracking-widest uppercase text-cream/40">Scroll</span>
-    <svg class="w-4 h-4 text-cream/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7" />
-    </svg>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-sans tracking-[0.15em] uppercase text-white/30 animate-bounce-slow">
+    Scroll ↓
   </div>
 </section>

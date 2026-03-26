@@ -1,32 +1,36 @@
 ---
-import Button from '../ui/Button.astro';
-
 interface Props {
-  title?: string;
+  label?: string;
+  title: string;
   description?: string;
+  buttonText: string;
+  buttonHref: string;
 }
-
-const {
-  title = "Ready for Your Dream Wedding Look?",
-  description = "Let's create something unforgettable together. Book your consultation today."
-} = Astro.props;
+const { label = "Ready to Begin?", title, description, buttonText, buttonHref } = Astro.props;
 ---
-
-<section class="relative py-24 lg:py-32 overflow-hidden">
-  <!-- Background -->
-  <div class="absolute inset-0 bg-gradient-to-r from-accent via-brown to-brown-dark"></div>
-  <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;1&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-
-  <div class="relative z-10 container-content text-center px-6">
-    <h2 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-cream mb-4" data-reveal>
+<section class="bg-near-black py-24 lg:py-32 px-6 lg:px-12">
+  <div class="container-content text-center" data-reveal>
+    <p class="text-[10px] font-sans font-medium tracking-[0.2em] uppercase text-gold mb-4">
+      {label}
+    </p>
+    <h2 class="font-serif text-display-lg text-white mb-4">
       {title}
     </h2>
-    <p class="text-base text-cream/60 max-w-lg mx-auto mb-10" data-reveal>
-      {description}
-    </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
-      <Button variant="secondary" href="/contact" size="lg">Get in Touch</Button>
-      <Button variant="outline-light" href="/portfolio" size="lg">View Our Work</Button>
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="w-10 h-px bg-gold"></div>
+      <div class="w-1 h-1 rounded-full bg-gold"></div>
+      <div class="w-10 h-px bg-gold"></div>
     </div>
+    {description && (
+      <p class="text-sm font-light text-white/60 max-w-lg mx-auto leading-relaxed mb-8">
+        {description}
+      </p>
+    )}
+    <a
+      href={buttonHref}
+      class="inline-flex items-center justify-center px-9 py-4 bg-forest-green text-white text-xs font-sans font-medium tracking-[0.12em] uppercase hover:bg-green-light transition-all duration-300"
+    >
+      {buttonText}
+    </a>
   </div>
 </section>
