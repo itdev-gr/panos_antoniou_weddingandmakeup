@@ -10,16 +10,16 @@ interface Props {
 const { src, alt = '', label = 'Photo', variant = 'light', class: className = '' } = Astro.props;
 
 const gradientClasses = variant === 'dark'
-  ? 'from-brown-dark via-accent to-brown'
-  : 'from-sand via-gold/30 to-sand-dark';
+  ? 'from-near-black via-charcoal to-near-black'
+  : 'from-off-white via-gold/30 to-gray-100';
 
 const textClasses = variant === 'dark'
-  ? 'text-cream/40'
-  : 'text-accent/40';
+  ? 'text-white/40'
+  : 'text-grey/40';
 
 const lineClasses = variant === 'dark'
-  ? 'bg-cream/20'
-  : 'bg-accent/30';
+  ? 'bg-white/20'
+  : 'bg-grey/30';
 ---
 
 {src ? (
