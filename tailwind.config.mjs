@@ -7,15 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream:       '#FFFAF5',
-        sand:        '#F2E9DE',
-        'sand-dark': '#E8DDD3',
-        gold:        '#D4C4A8',
-        'gold-muted':'#C4B59A',
-        accent:      '#8B7355',
-        'accent-light':'#9C8B74',
-        brown:       '#5C4A35',
-        'brown-dark':'#3D2E1F',
+        'off-white':    '#FAFAF8',
+        charcoal:       '#2D2D2D',
+        grey:           '#555555',
+        'forest-green': '#1B4332',
+        'green-light':  '#245A3F',
+        gold:           '#B8976A',
+        'gold-light':   '#D4B88C',
+        'near-black':   '#1A1A1A',
       },
       fontFamily: {
         serif:  ['"Cormorant Garamond"', ...defaultTheme.fontFamily.serif],

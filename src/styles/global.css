@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-cream text-brown font-sans antialiased;
+    @apply bg-white text-grey font-sans antialiased;
   }
   h1, h2, h3, h4 {
     @apply font-serif;
