@@ -87,7 +87,7 @@ All buttons: 12px uppercase Inter, letter-spacing 0.12em, padding 14px 32px.
 
 | Old URL | New URL | Action |
 |---------|---------|--------|
-| `/services` | `/services` | Becomes hub page |
+| `/services` | `/services` | Becomes hub page (two cards linking to bridal-beauty and wedding-planning with brief descriptions and images) |
 | `/bridal-makeup-hair-styling` | `/services/bridal-beauty` | Replaced |
 | `/wedding-planner` | `/services/wedding-planning` | Replaced |
 | `/photo-shooting-makeup-hair` | — | Removed (content merged into bridal-beauty) |
@@ -194,6 +194,7 @@ All buttons: 12px uppercase Inter, letter-spacing 0.12em, padding 14px 32px.
    - Private Bridal Preparation: from €450
    - Bridal Boudoir Studio Use (2hrs): from €300
    - Professional Makeup Lessons: from €150
+6. **CTA** — "Book Your Bridal Lounge Experience" → `/contact`.
 
 ### Page 6: Contact & Booking (`/contact`)
 
@@ -267,6 +268,7 @@ Restyled article listing + 3 existing articles. Clean card grid: featured image 
 - **Image alt text**: Descriptive, keyword-rich (e.g., "Luxury Wedding Planning Santorini Panos Antoniou")
 - **Internal linking**: "Makeup" links to `/services/bridal-beauty`, "Planning" links to `/services/wedding-planning` within body text
 - **JSON-LD schema**: Update existing LocalBusiness schema for Pyrgos Village location
+- **Redirects**: Not handled at Astro level (static site). If hosted on Netlify/Vercel, configure redirects for old URLs (`/bridal-makeup-hair-styling` → `/services/bridal-beauty`, etc.) in platform config.
 - **Sitemap**: Auto-generated via @astrojs/sitemap (already configured)
 - **Canonical URLs**: One per page (already configured)
 - **Open Graph + Twitter cards**: Update per page with new titles/descriptions
@@ -302,7 +304,7 @@ Update `src/data/testimonials.ts` — keep existing testimonials, restyle presen
 
 ## Out of Scope
 
-- Backend form submission (front-end form only for now)
+- Backend form submission (front-end form only for now — on submit, show a styled success message thanking the user and suggesting they reach out via WhatsApp for faster response)
 - New photography or stock images
 - Blog content changes (only restyling)
 - Instagram API integration (using official embed widget)
