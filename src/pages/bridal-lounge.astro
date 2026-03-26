@@ -1,0 +1,166 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import CTABanner from '../components/home/CTABanner.astro';
+import { studioServices } from '../data/services';
+---
+
+<PageLayout
+  title="The First Exclusive Bridal Lounge in Santorini | Panos Antoniou Weddings"
+  description="Step into the first exclusive Bridal Lounge in Santorini. A private sanctuary for bridal preparation, editorial sessions, and luxury boudoir photography."
+>
+  <!-- Hero -->
+  <section class="relative min-h-[75vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/images/services/bridal-makeup.jpg"
+        alt="Bridal Lounge Santorini"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-near-black/90 via-near-black/80 to-charcoal/90"></div>
+    </div>
+    <div class="container-content px-6 lg:px-12 text-center relative z-10">
+      <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white leading-tight mb-6" data-reveal>
+        The First Exclusive Bridal Lounge in Santorini
+      </h1>
+      <p class="text-sm md:text-base font-sans tracking-widest-plus uppercase text-white/60" data-reveal>
+        Panos Antoniou Weddings
+      </p>
+    </div>
+  </section>
+
+  <!-- The Concept -->
+  <section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+    <div class="container-content max-w-narrow mx-auto text-center" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-6">
+        The Concept
+      </p>
+      <div class="flex items-center justify-center gap-3 mb-10">
+        <div class="w-10 h-px bg-gold"></div>
+        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+        <div class="w-10 h-px bg-gold"></div>
+      </div>
+      <p class="text-base md:text-lg font-serif text-grey leading-relaxed">
+        Located in the heart of Santorini, the Panos Antoniou Weddings Bridal Lounge &amp; Makeup Studio is a private sanctuary established in 2026. Designed to offer absolute luxury, privacy, and serenity, it is the premier destination for high-end bridal preparation on the island.
+      </p>
+    </div>
+  </section>
+
+  <!-- The Space: Volcanic Soul -->
+  <section class="relative bg-near-black py-24 lg:py-32 px-6 lg:px-12 overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/images/services/photo-shoot.jpg"
+        alt="Volcanic-inspired bridal studio"
+        class="w-full h-full object-cover opacity-20"
+      />
+    </div>
+    <div class="container-content relative z-10">
+      <div class="max-w-narrow mx-auto text-center mb-16" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-6">
+          The Space
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-white mb-8">
+          Volcanic Soul
+        </h2>
+        <div class="flex items-center justify-center gap-3 mb-10">
+          <div class="w-10 h-px bg-gold"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+          <div class="w-10 h-px bg-gold"></div>
+        </div>
+        <p class="text-base md:text-lg font-serif text-white/70 leading-relaxed">
+          Our studio is a masterpiece of minimalist luxury, inspired by the raw beauty of Santorini. The aesthetic is a tribute to the island's signature volcanic ash, featuring a sophisticated palette of deep greys and charcoal blacks&mdash;mirroring the iconic identity of our brand.
+        </p>
+      </div>
+
+      <!-- Features -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
+        <div class="text-center border border-white/10 p-8 lg:p-10" data-reveal>
+          <div class="w-12 h-px bg-gold mx-auto mb-6"></div>
+          <h3 class="text-lg font-serif italic text-white mb-4">Driftwood Accents</h3>
+          <p class="text-sm font-sans text-white/60 leading-relaxed">
+            Natural black sea-wood textures that bring an organic, high-fashion feel.
+          </p>
+        </div>
+        <div class="text-center border border-white/10 p-8 lg:p-10" data-reveal style="transition-delay: 100ms">
+          <div class="w-12 h-px bg-gold mx-auto mb-6"></div>
+          <h3 class="text-lg font-serif italic text-white mb-4">White &amp; Gold Details</h3>
+          <p class="text-sm font-sans text-white/60 leading-relaxed">
+            Luminous white strokes and gold marble finishes that add a touch of timeless elegance.
+          </p>
+        </div>
+        <div class="text-center border border-white/10 p-8 lg:p-10" data-reveal style="transition-delay: 200ms">
+          <div class="w-12 h-px bg-gold mx-auto mb-6"></div>
+          <h3 class="text-lg font-serif italic text-white mb-4">Professional Lighting</h3>
+          <p class="text-sm font-sans text-white/60 leading-relaxed">
+            A space designed not just to prepare, but to be photographed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bridal Boudoir & Editorial Sessions -->
+  <section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+    <div class="container-content">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Image -->
+        <div class="relative" data-reveal>
+          <img
+            src="/images/services/photo-shoot.jpg"
+            alt="Bridal boudoir editorial session"
+            class="w-full aspect-[4/5] object-cover"
+          />
+          <div class="absolute inset-0 bg-charcoal/10"></div>
+        </div>
+
+        <!-- Text -->
+        <div data-reveal style="transition-delay: 150ms">
+          <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-6">
+            Editorial Experience
+          </p>
+          <h2 class="text-display-sm md:text-display font-serif italic text-charcoal mb-6">
+            Bridal Boudoir &amp; Editorial Sessions
+          </h2>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-px bg-gold"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+            <div class="w-10 h-px bg-gold"></div>
+          </div>
+          <p class="text-base md:text-lg font-serif text-grey leading-relaxed">
+            The Bridal Lounge is more than a preparation space; it is a curated studio for the modern bride. With its volcanic-inspired textures and professional lighting, it offers an exclusive setting for your Bridal Boudoir and 'Getting Ready' editorial photoshoots. Capture your transformation in a space that looks like a high-end fashion set.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio Services -->
+  <section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+    <div class="container-content max-w-narrow mx-auto">
+      <div class="text-center mb-14" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+          Exclusive Services
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+          Studio Services
+        </h2>
+      </div>
+
+      <div class="space-y-0" data-reveal>
+        {studioServices.map((service, i) => (
+          <div class="flex items-center justify-between py-5 border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner
+    title="Book Your Bridal Lounge Experience"
+    buttonText="Book Now"
+    buttonHref="/contact"
+  />
+</PageLayout>
