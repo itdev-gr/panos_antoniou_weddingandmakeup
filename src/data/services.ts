@@ -1,60 +1,71 @@
 export const services = [
   {
-    title: "Bridal Makeup & Hair Styling",
-    slug: "/bridal-makeup-hair-styling",
-    description: "Personalized consultations, trial sessions, and on-site bridal beauty — crafted to make you feel extraordinary on your special day.",
+    title: "Bridal Makeup & Hair",
+    slug: "/services/bridal-beauty",
+    description: "High-end beauty services signed by Panos Antoniou Wedding Makeup and Hair.",
     image: "/images/services/bridal-makeup.jpg",
-    features: [
-      "Personalized consultation & planning",
-      "Makeup & hair preview / trial session",
-      "On-site service at your venue",
-      "Long-lasting HD formulas",
-    ],
+    price: "Starting from €450",
   },
   {
-    title: "Bridesmaids Makeup & Hair",
-    slug: "/bridesmaids-makeup-hair",
-    description: "Coordinated beauty for your entire bridal party — from pre-wedding events to the big day itself.",
+    title: "Wedding Planning & Coordination",
+    slug: "/services/wedding-planning",
+    description: "From concept to execution, we design your wedding with precision and style.",
     image: "/images/services/bridesmaids.jpg",
-    features: [
-      "HD foundation applications",
-      "Professional contouring & highlighting",
-      "False lash application",
-      "Group coordination for large parties",
-    ],
+    price: "Starting from €1,200",
+  },
+];
+
+export const signatureServices = [
+  { name: "Full Bridal Beauty (Makeup & Hair)", price: "€450" },
+  { name: "Individual Bridal Service (Makeup or Hair)", price: "€230" },
+  { name: "Bridal Trial (Makeup & Hair)", price: "€100" },
+  { name: "Pre or Next-Day Styling", price: "€250" },
+];
+
+export const luxuryPackages = [
+  {
+    name: "The Intimate Bride",
+    price: "€800",
+    includes: "Bridal Makeup & Hair + 2 additional persons + Venue Touch-ups",
   },
   {
-    title: "Photo Shooting Makeup & Hair",
-    slug: "/photo-shooting-makeup-hair",
-    description: "Camera-ready beauty for editorial shoots, fashion photography, and special occasions.",
-    image: "/images/services/photo-shoot.jpg",
-    features: [
-      "Hourly & day-based packages",
-      "High-definition photographic techniques",
-      "Quick touch-ups between shots",
-      "Full confidentiality guaranteed",
-    ],
+    name: "The Bridal Morning",
+    price: "€940",
+    includes: "Bridal Makeup & Hair + 3 additional persons + Venue Touch-ups",
   },
   {
-    title: "Training Classes",
-    slug: "/training-classes",
-    description: "Learn from 26+ years of professional expertise — from fundamental techniques to advanced artistry.",
-    image: "/images/services/training.jpg",
-    features: [
-      "Makeup tips & tricks fundamentals",
-      "Updo & hairstyling instruction",
-      "Personal or professional development",
-      "Hands-on practice sessions",
-    ],
+    name: "The Bridal Party",
+    price: "€1,080",
+    includes: "Bridal Makeup & Hair + 4 additional persons + 1hr Group Venue Touch-ups",
   },
+];
+
+export const planningServices = {
+  fullPlanning: [
+    { name: "Intimate Weddings (up to 30 guests)", price: "€1,200" },
+    { name: "Grand Celebrations (up to 100 guests)", price: "€3,500" },
+  ],
+  elopements: [
+    { name: "Essential Elopement Package", price: "€1,200" },
+    { name: "Premium Elopement Experience", price: "€1,800" },
+    { name: "Luxury Elopement (with full styling & photography)", price: "€2,800" },
+  ],
+  proposals: [
+    { name: "Proposal Essential", price: "€500" },
+    { name: "Luxury Proposal Design", price: "€1,200" },
+  ],
+};
+
+export const studioServices = [
+  { name: "Private Bridal Preparation", price: "€450" },
+  { name: "Bridal Boudoir Studio Use (2 hours)", price: "€300" },
+  { name: "Professional Makeup Lessons", price: "€150" },
 ];
 
 export const locations = [
   "Santorini",
   "Mykonos",
   "Athens",
-  "Zakynthos",
-  "Chalkida",
-  "Amsterdam",
+  "Greece",
   "Worldwide",
 ];
