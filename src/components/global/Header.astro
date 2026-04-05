@@ -24,9 +24,13 @@ const navLinks = [
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3 group">
       <img
+        id="header-logo"
         src="/images/logo/panos-logo.png"
         alt="Panos Antoniou"
-        class="h-20 w-auto transition-transform duration-300 group-hover:scale-105"
+        class:list={[
+          "h-20 w-auto transition-all duration-300 group-hover:scale-105",
+          transparent ? "brightness-0 invert" : "brightness-0",
+        ]}
       />
     </a>
 
@@ -165,6 +169,10 @@ const navLinks = [
           el.classList.remove('bg-white');
           el.classList.add('bg-charcoal');
         });
+        // Make logo black on white background
+        const logo = document.getElementById('header-logo');
+        logo?.classList.remove('invert');
+        logo?.classList.add('brightness-0');
       } else {
         header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
         header.classList.add('header-transparent');
@@ -184,6 +192,9 @@ const navLinks = [
           el.classList.remove('bg-charcoal');
           el.classList.add('bg-white');
         });
+        // Restore logo to white for transparent header
+        const logoRestore = document.getElementById('header-logo');
+        logoRestore?.classList.add('brightness-0', 'invert');
       }
     });
   }
