@@ -20,7 +20,7 @@ const navLinks = [
     transparent ? "header-transparent" : "bg-white/95 backdrop-blur-md shadow-sm",
   ]}
 >
-  <div class="container-content flex items-center justify-between px-6 py-5 lg:px-12 lg:py-6">
+  <div class="container-content flex items-center justify-between px-5 py-3 lg:px-10 lg:py-4">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3 group">
       <img
@@ -28,20 +28,20 @@ const navLinks = [
         src="/images/logo/panos-logo.png"
         alt="Panos Antoniou"
         class:list={[
-          "h-20 w-auto transition-all duration-300 group-hover:scale-105",
+          "h-20 lg:h-24 w-auto transition-all duration-300 group-hover:scale-105",
           transparent ? "brightness-0 invert" : "brightness-0",
         ]}
       />
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-8">
+    <nav class="hidden lg:flex items-center gap-9">
       {navLinks.map((link) => (
         <a
           href={link.href}
           class:list={[
-            "text-xs font-sans font-medium tracking-widest-plus uppercase transition-colors duration-300",
-            transparent ? "text-white/80 hover:text-white" : "text-charcoal/70 hover:text-charcoal",
+            "text-sm font-sans font-medium tracking-widest-plus uppercase transition-colors duration-300",
+            transparent ? "text-white/90 hover:text-white" : "text-forest-green hover:text-green-light",
           ]}
         >
           {link.label}
@@ -54,10 +54,10 @@ const navLinks = [
       <a
         href="/contact"
         class:list={[
-          "hidden md:inline-flex px-6 py-2.5 text-xs font-sans font-medium tracking-widest uppercase border transition-all duration-300 rounded-sm",
+          "hidden md:inline-flex px-7 py-3 text-sm font-sans font-semibold tracking-widest uppercase transition-all duration-300 rounded-sm shadow-lg hover:shadow-xl hover:scale-105",
           transparent
-            ? "border-white/40 text-white hover:bg-white hover:text-charcoal"
-            : "border-forest-green text-forest-green hover:bg-forest-green hover:text-white",
+            ? "bg-white text-forest-green hover:bg-gold hover:text-white"
+            : "bg-forest-green text-white hover:bg-gold hover:text-white",
         ]}
       >
         Book Now
@@ -157,14 +157,15 @@ const navLinks = [
       if (window.scrollY > 80) {
         header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
         header.classList.remove('header-transparent');
-        header.querySelectorAll('a, span').forEach((el) => {
-          el.classList.remove('text-white/80', 'text-white');
-          el.classList.add('text-charcoal/70');
+        header.querySelectorAll('nav a').forEach((el) => {
+          el.classList.remove('text-white/90', 'text-white/80', 'text-white', 'hover:text-white');
+          el.classList.add('text-forest-green', 'hover:text-green-light');
         });
-        header.querySelectorAll('.border-white\\/40').forEach((el) => {
-          el.classList.remove('border-white/40', 'text-white', 'hover:bg-white', 'hover:text-charcoal');
-          el.classList.add('border-forest-green', 'text-forest-green', 'hover:bg-forest-green', 'hover:text-white');
-        });
+        const bookBtn = header.querySelector('a[href="/contact"]');
+        if (bookBtn) {
+          bookBtn.classList.remove('bg-white', 'text-forest-green', 'hover:bg-gold', 'hover:text-white');
+          bookBtn.classList.add('bg-forest-green', 'text-white', 'hover:bg-gold', 'hover:text-white');
+        }
         header.querySelectorAll('#mobile-menu-btn span').forEach((el) => {
           el.classList.remove('bg-white');
           el.classList.add('bg-charcoal');
@@ -177,15 +178,15 @@ const navLinks = [
         header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
         header.classList.add('header-transparent');
         // Restore nav link colors
-        header.querySelectorAll('a, span').forEach((el) => {
-          el.classList.remove('text-charcoal/70');
-          el.classList.add('text-white/80');
+        header.querySelectorAll('nav a').forEach((el) => {
+          el.classList.remove('text-forest-green', 'hover:text-green-light');
+          el.classList.add('text-white/90', 'hover:text-white');
         });
         // Restore Book Now button
-        const bookBtn = header.querySelector('.border-forest-green');
-        if (bookBtn) {
-          bookBtn.classList.remove('border-forest-green', 'text-forest-green', 'hover:bg-forest-green', 'hover:text-white');
-          bookBtn.classList.add('border-white/40', 'text-white', 'hover:bg-white', 'hover:text-charcoal');
+        const bookBtnRestore = header.querySelector('a[href="/contact"]');
+        if (bookBtnRestore) {
+          bookBtnRestore.classList.remove('bg-forest-green', 'text-white');
+          bookBtnRestore.classList.add('bg-white', 'text-forest-green');
         }
         // Restore hamburger
         header.querySelectorAll('#mobile-menu-btn span').forEach((el) => {
