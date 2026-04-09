@@ -7,8 +7,11 @@ import PageLayout from '../layouts/PageLayout.astro';
   description="Ready to start planning your Santorini wedding? Contact Panos Antoniou Weddings for bridal beauty and event design. Secure your date for 2026/2027."
 >
   <!-- Hero -->
-  <section class="relative py-24 lg:py-32 bg-gradient-to-b from-forest-green via-forest-green/95 to-green-light overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,151,106,0.1),transparent_70%)]"></div>
+  <section class="relative py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/scenery/santorini-village.jpg" alt="" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-b from-forest-green/80 via-forest-green/70 to-green-light/80"></div>
+    </div>
     <div class="relative z-10 container-content text-center px-6">
       <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white mb-4" data-reveal>
         Book Your Santorini Wedding Experience
@@ -113,6 +116,23 @@ import PageLayout from '../layouts/PageLayout.astro';
                   <optgroup label="The Combined Experience">
                     <option value="combined">Custom Package</option>
                   </optgroup>
+                </select>
+              </div>
+
+              <!-- Budget -->
+              <div>
+                <label for="budget" class="block text-sm font-sans font-medium text-charcoal mb-2">Budget</label>
+                <select
+                  id="budget"
+                  name="budget"
+                  class="w-full px-4 py-3 bg-off-white border border-gray-200 text-charcoal text-sm focus:outline-none focus:ring-1 focus:ring-forest-green focus:border-forest-green transition-colors"
+                >
+                  <option value="">Select your budget range...</option>
+                  <option value="under-1000">Under €1,000</option>
+                  <option value="1000-2000">€1,000 – €2,000</option>
+                  <option value="2000-3500">€2,000 – €3,500</option>
+                  <option value="3500-5000">€3,500 – €5,000</option>
+                  <option value="5000+">€5,000+</option>
                 </select>
               </div>
 

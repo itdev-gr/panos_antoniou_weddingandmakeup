@@ -9,8 +9,11 @@ import CTABanner from '../../components/home/CTABanner.astro';
   transparentHeader={true}
 >
   <!-- Hero -->
-  <section class="relative py-28 lg:py-36 bg-gradient-to-b from-near-black via-near-black/95 to-charcoal overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(27,67,50,0.15),transparent_70%)]"></div>
+  <section class="relative py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/scenery/santorini-bell-tower.jpg" alt="" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-b from-near-black/70 via-near-black/60 to-near-black/80"></div>
+    </div>
     <div class="relative z-10 container-content text-center px-6">
       <h2 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white mb-4" data-reveal>
         Our Services
@@ -35,7 +38,7 @@ import CTABanner from '../../components/home/CTABanner.astro';
         <a href="/services/bridal-beauty" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
           <div class="aspect-[3/2] overflow-hidden">
             <img
-              src="/images/services/bridal-makeup.jpg"
+              src="/images/services/bridal-closeup.jpg"
               alt="Bridal Makeup and Hair"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
@@ -61,7 +64,7 @@ import CTABanner from '../../components/home/CTABanner.astro';
         <a href="/services/wedding-planning" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal style="transition-delay: 100ms">
           <div class="aspect-[3/2] overflow-hidden">
             <img
-              src="/images/services/bridesmaids.jpg"
+              src="/images/services/ceremony-caldera.jpg"
               alt="Wedding Planning and Design"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />

@@ -3,21 +3,21 @@ export const services = [
     title: "Bridal Makeup & Hair",
     slug: "/services/bridal-beauty",
     description: "High-end beauty services signed by Panos Antoniou Wedding Makeup and Hair.",
-    image: "/images/services/bridal-makeup.jpg",
+    image: "/images/services/bridal-closeup.jpg",
     price: "Starting from €450",
   },
   {
     title: "Wedding Planning & Coordination",
     slug: "/services/wedding-planning",
     description: "From concept to execution, we design your wedding with precision and style.",
-    image: "/images/services/bridesmaids.jpg",
+    image: "/images/services/ceremony-caldera.jpg",
     price: "Starting from €1,200",
   },
 ];
 
 export const signatureServices = [
   { name: "Full Bridal Beauty (Makeup & Hair)", price: "€450" },
-  { name: "Individual Bridal Service (Makeup or Hair)", price: "€230" },
+  { name: "Bridal Makeup or Hair", price: "€230" },
   { name: "Bridal Trial (Makeup & Hair)", price: "€100" },
   { name: "Pre or Next-Day Styling", price: "€250" },
 ];
@@ -58,8 +58,16 @@ export const planningServices = {
 
 export const studioServices = [
   { name: "Private Bridal Preparation", price: "€450" },
-  { name: "Bridal Boudoir Studio Use (2 hours)", price: "€300" },
+  { name: "Bridal Boudoir Studio Use", price: "€60/hr" },
   { name: "Professional Makeup Lessons", price: "€150" },
+];
+
+export const bridesmaidServices = [
+  { name: "Makeup & Hair", price: "€150" },
+];
+
+export const eventServices = [
+  { name: "Event Make-up and Hair", price: "€150" },
 ];
 
 export const locations = [

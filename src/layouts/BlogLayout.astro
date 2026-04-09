@@ -14,13 +14,9 @@ const { title, description, date, category, image } = Astro.props;
 ---
 
 <PageLayout title={`${title} — Panos Antoniou Blog`} description={description} transparentHeader={true}>
-  <!-- Cinematic Hero with Title Overlay -->
-  <section class="relative min-h-[45vh] lg:min-h-[55vh] overflow-hidden">
-    <div class="absolute inset-0">
-      <img src={image} alt="" class="w-full h-full object-cover object-center" />
-      <div class="absolute inset-0 bg-gradient-to-b from-near-black/30 via-near-black/50 to-near-black/80"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-near-black/60 via-transparent to-transparent"></div>
-    </div>
+  <!-- Hero -->
+  <section class="relative min-h-[45vh] lg:min-h-[55vh] bg-gradient-to-b from-forest-green via-forest-green/95 to-green-light overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,151,106,0.1),transparent_70%)]"></div>
 
     <div class="relative z-10 container-content px-6 lg:px-12 flex items-end pb-16 lg:pb-20 min-h-[45vh] lg:min-h-[55vh]">
       <div class="max-w-2xl">

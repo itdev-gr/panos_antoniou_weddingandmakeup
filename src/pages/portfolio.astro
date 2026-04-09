@@ -6,8 +6,8 @@ import PlaceholderImage from '../components/ui/PlaceholderImage.astro';
 import { portfolioItems } from '../data/portfolio';
 import { testimonials } from '../data/testimonials';
 
-const featured = portfolioItems.slice(0, 2);
-const gallery = portfolioItems.slice(2);
+const featured = portfolioItems.slice(0, 10);
+const gallery = portfolioItems.slice(10);
 const quote = testimonials[3];
 ---
 
@@ -19,7 +19,7 @@ const quote = testimonials[3];
   <!-- Section 1: Cinematic Hero -->
   <section class="relative min-h-[40vh] lg:min-h-[50vh] overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/portfolio/luxury-wedding-mykonos.jpg" alt="" class="w-full h-full object-cover object-center" />
+      <img src="/images/portfolio/ceremony-confetti.jpg" alt="" class="w-full h-full object-cover object-center" />
       <div class="absolute inset-0 bg-gradient-to-b from-near-black/30 via-near-black/50 to-near-black/80"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-near-black/60 via-transparent to-transparent"></div>
     </div>
@@ -70,8 +70,9 @@ const quote = testimonials[3];
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
 
     <div class="container-content">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-        {featured.map((item, i) => (
+      <!-- Top 2: Large featured -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
+        {featured.slice(0, 2).map((item, i) => (
           <div
             class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
             data-reveal
@@ -79,7 +80,7 @@ const quote = testimonials[3];
             data-caption={item.caption}
             data-src={item.src}
           >
-            <div class={`relative ${i === 0 ? '' : ''}`}>
+            <div class="relative">
               {i === 0 && <div class="absolute -bottom-4 -right-4 w-full h-full border border-gold rounded-sm -z-10"></div>}
               <div class="aspect-[3/4] overflow-hidden rounded-sm">
                 <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
@@ -90,6 +91,56 @@ const quote = testimonials[3];
                     <div class="w-8 h-px bg-gold mb-3"></div>
                     <p class="text-lg font-serif italic text-white">{item.caption}</p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Row 2: 4 secondary featured -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-4 lg:mb-6">
+        {featured.slice(2, 6).map((item, i) => (
+          <div
+            class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
+            data-reveal
+            style={`transition-delay: ${(i + 2) * 100}ms`}
+            data-caption={item.caption}
+            data-src={item.src}
+          >
+            <div class="aspect-[3/4] overflow-hidden rounded-sm">
+              <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
+                <PlaceholderImage src={item.src} alt={item.alt} label={item.caption} />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-near-black/80 via-near-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+                <div>
+                  <div class="w-6 h-px bg-gold mb-2"></div>
+                  <p class="text-sm font-serif italic text-white">{item.caption}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Row 3: 4 more featured -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        {featured.slice(6, 10).map((item, i) => (
+          <div
+            class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
+            data-reveal
+            style={`transition-delay: ${(i + 6) * 100}ms`}
+            data-caption={item.caption}
+            data-src={item.src}
+          >
+            <div class="aspect-[3/4] overflow-hidden rounded-sm">
+              <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
+                <PlaceholderImage src={item.src} alt={item.alt} label={item.caption} />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-near-black/80 via-near-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+                <div>
+                  <div class="w-6 h-px bg-gold mb-2"></div>
+                  <p class="text-sm font-serif italic text-white">{item.caption}</p>
                 </div>
               </div>
             </div>

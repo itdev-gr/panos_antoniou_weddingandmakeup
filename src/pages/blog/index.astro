@@ -8,7 +8,7 @@ const posts = [
     slug: "/blog/santorini-dream-wedding",
     excerpt: "Santorini is one of the most sought-after wedding destinations in the world. Here's everything you need to know to plan your perfect day on this magical island.",
     date: "June 23, 2021",
-    image: "/images/portfolio/santorini-bridal-looks-3.jpg",
+    image: "/images/blog/santorini-dream-wedding.jpg",
     category: "Wedding Planning",
   },
   {
@@ -16,7 +16,7 @@ const posts = [
     slug: "/blog/wedding-beautician",
     excerpt: "Choosing the right makeup artist for your wedding is one of the most important decisions you'll make. Learn what to look for and how to find your perfect match.",
     date: "June 4, 2021",
-    image: "/images/portfolio/glam-makeup-hair.jpg",
+    image: "/images/blog/wedding-beautician.jpg",
     category: "Bridal Tips",
   },
   {
@@ -24,7 +24,7 @@ const posts = [
     slug: "/blog/best-wedding-makeup-services",
     excerpt: "From budgeting to trials, discover the five essential factors that will help you secure the best wedding makeup services for your big day.",
     date: "May 15, 2021",
-    image: "/images/portfolio/luxury-glam-brides-santorini.jpg",
+    image: "/images/blog/best-wedding-makeup.jpg",
     category: "Bridal Beauty",
   },
 ];
@@ -38,7 +38,7 @@ const posts = [
   <!-- Cinematic Hero -->
   <section class="relative min-h-[40vh] lg:min-h-[50vh] overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/portfolio/santorini-bridal-looks-3.jpg" alt="" class="w-full h-full object-cover object-center" />
+      <img src="/images/scenery/oia-blue-domes.jpg" alt="" class="w-full h-full object-cover object-center" />
       <div class="absolute inset-0 bg-gradient-to-b from-near-black/30 via-near-black/50 to-near-black/80"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-near-black/60 via-transparent to-transparent"></div>
     </div>
@@ -73,7 +73,7 @@ const posts = [
             style={`transition-delay: ${i * 100}ms`}
           >
             <div class="aspect-[4/3] overflow-hidden rounded-sm mb-5">
-              <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={post.image} alt={post.title} class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div class="flex items-center gap-3 mb-3">
               <span class="text-[10px] font-sans font-medium tracking-widest uppercase text-forest-green bg-off-white px-3 py-1 rounded-full">

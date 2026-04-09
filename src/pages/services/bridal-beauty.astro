@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import CTABanner from '../../components/home/CTABanner.astro';
-import { signatureServices, luxuryPackages } from '../../data/services';
+import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } from '../../data/services';
 ---
 
 <PageLayout
@@ -9,8 +9,12 @@ import { signatureServices, luxuryPackages } from '../../data/services';
   description="High-end bridal makeup and hair services in Santorini. Explore our luxury beauty packages and visit our exclusive Bridal Lounge in Pyrgos. Book your trial."
 >
   <!-- Hero -->
-  <section class="relative min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-near-black to-charcoal">
-    <div class="container-content px-6 lg:px-12 text-center">
+  <section class="relative min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/services/bridal-beauty-hero.jpg" alt="Panos Antoniou applying bridal makeup in Santorini" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-b from-near-black/70 via-near-black/50 to-near-black/70"></div>
+    </div>
+    <div class="container-content px-6 lg:px-12 text-center relative z-10">
       <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white leading-tight mb-6" data-reveal>
         The Best Bridal Makeup and Hair in Santorini
       </h1>
@@ -59,6 +63,56 @@ import { signatureServices, luxuryPackages } from '../../data/services';
       <p class="mt-10 text-sm text-grey/80 text-center leading-relaxed" data-reveal>
         All bridal services include Professional Skin Preparation, Relaxing Facial Massage, Premium False Lashes, and Veil Styling.
       </p>
+    </div>
+  </section>
+
+  <!-- Bridesmaids & Guests -->
+  <section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+    <div class="container-content max-w-narrow mx-auto">
+      <div class="text-center mb-14" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+          For Your Loved Ones
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+          Bridesmaids &amp; Guests
+        </h2>
+      </div>
+
+      <div class="space-y-0" data-reveal>
+        {bridesmaidServices.map((service, i) => (
+          <div class="flex items-center justify-between py-5 border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-10 text-sm text-grey/80 text-center leading-relaxed italic" data-reveal>
+        Bespoke packages and exclusive rates are available for group bookings.
+      </p>
+    </div>
+  </section>
+
+  <!-- Event Make-up and Hair -->
+  <section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+    <div class="container-content max-w-narrow mx-auto">
+      <div class="text-center mb-14" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+          Beyond the Wedding
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+          Event Make-up and Hair
+        </h2>
+      </div>
+
+      <div class="space-y-0" data-reveal>
+        {eventServices.map((service, i) => (
+          <div class="flex items-center justify-between py-5 border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
