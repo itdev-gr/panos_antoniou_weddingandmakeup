@@ -135,14 +135,14 @@ import '../../styles/global.css';
                 ${row('Event Location', d.eventLocation || '')}
                 ${row('Service', d.service || '')}
                 ${row('Budget', d.budget || '')}
-                ${row('Found us via', d.referralSource || '')}
+                ${row('Referral Source', d.referralSource || '')}
                 ${row('Message', d.message || '')}
               </dl>
             `;
             listEl.appendChild(card);
           });
         } catch (err) {
-          console.error('Failed to load submissions', err);
+          if (import.meta.env.DEV) console.error('Failed to load submissions', err);
           listEl.innerHTML = `
             <div class="bg-red-50 border border-red-200 text-red-700 text-sm rounded-sm p-6">
               Failed to load submissions. Check Firestore security rules and your network connection.
