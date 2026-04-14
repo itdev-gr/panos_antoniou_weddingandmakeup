@@ -3,3 +3,8 @@ dist/
 .astro/
 .superpowers/
 firebase-debug.log
+
+# Env files (use .env.example as the template)
+.env
+.env.local
+.env.*.local

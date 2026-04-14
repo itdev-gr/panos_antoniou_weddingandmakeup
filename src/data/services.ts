@@ -42,7 +42,7 @@ export const luxuryPackages = [
 
 export const planningServices = {
   fullPlanning: [
-    { name: "Intimate Weddings (up to 30 guests)", price: "€1,200" },
+    { name: "Intimate Weddings (up to 30 guests)", price: "€1,500" },
     { name: "Grand Celebrations (up to 100 guests)", price: "€3,500" },
   ],
   elopements: [
