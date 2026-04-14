@@ -11,7 +11,7 @@ export const services = [
     slug: "/services/wedding-planning",
     description: "From concept to execution, we design your wedding with precision and style.",
     image: "/images/services/ceremony-caldera.jpg",
-    price: "Starting from €1,200",
+    price: "Starting from €1,500",
   },
 ];
 
