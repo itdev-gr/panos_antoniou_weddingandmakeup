@@ -135,10 +135,11 @@ import PageLayout from '../layouts/PageLayout.astro';
 
               <!-- How did you find us? -->
               <div>
-                <label for="referral" class="block text-sm font-sans font-medium text-charcoal mb-2">How did you find us?</label>
+                <label for="referral" class="block text-sm font-sans font-medium text-charcoal mb-2">How did you find us? <span class="text-red-500">*</span></label>
                 <select
                   id="referral"
                   name="referral_source"
+                  required
                   class="w-full px-4 py-3 bg-off-white border border-gray-200 text-charcoal text-sm focus:outline-none focus:ring-1 focus:ring-forest-green focus:border-forest-green transition-colors"
                 >
                   <option value="">Select an option...</option>
