@@ -61,7 +61,7 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
 
       <div class="space-y-0" data-reveal>
         {signatureServices.map((service, i) => (
-          <div class="border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+          <div id={service.id} class="border-b border-gold/20 scroll-mt-28" style={`transition-delay: ${i * 80}ms`}>
             <div class="flex items-center justify-between py-5">
               <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
               <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">
@@ -90,7 +90,7 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
   </section>
 
   <!-- Bridesmaids & Guests -->
-  <section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+  <section id="bridesmaids-guests" class="bg-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
     <div class="container-content max-w-narrow mx-auto">
       <div class="text-center mb-14" data-reveal>
         <div class="w-48 md:w-56 mx-auto mb-8 overflow-hidden">
@@ -130,7 +130,7 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
   </section>
 
   <!-- Event Make-up and Hair -->
-  <section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+  <section id="event-makeup-hair" class="bg-off-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
     <div class="container-content max-w-narrow mx-auto">
       <div class="text-center mb-14" data-reveal>
         <div class="w-48 md:w-56 mx-auto mb-8 overflow-hidden">

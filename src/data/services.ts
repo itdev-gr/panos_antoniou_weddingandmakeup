@@ -19,6 +19,7 @@ export const signatureServices = [
   {
     name: "Full Bridal Beauty (Makeup & Hair)",
     price: "€450",
+    id: "full-bridal-beauty",
     includes: [
       "Facial massage & skin preparation",
       "Toners, moisturizers & serums",
@@ -32,6 +33,7 @@ export const signatureServices = [
   {
     name: "Pre or Next-Day Styling",
     price: "€250",
+    id: "pre-or-next-day-styling",
     priceNote:
       "Price applies when booked in combination with another bridal service. Otherwise, the price is €350.",
   },

@@ -32,7 +32,7 @@ import CTABanner from '../../components/home/CTABanner.astro';
   <!-- Service Cards -->
   <section class="section-padding bg-white">
     <div class="container-content">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20 lg:mb-24">
 
         <!-- Card 1: Bridal Makeup & Hair -->
         <a href="/services/bridal-beauty" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
@@ -77,6 +77,124 @@ import CTABanner from '../../components/home/CTABanner.astro';
               From concept to execution, we design your wedding with precision and style.
             </p>
             <p class="text-sm font-sans font-medium text-gold mb-6">Starting from &euro;1,200</p>
+            <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+              Learn More
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Bridal Beauty: detail cards -->
+      <div class="text-center mb-14" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+          Bridal Beauty
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+          Services in Detail
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+        <!-- Card: Full Bridal Beauty -->
+        <a href="/services/bridal-beauty#full-bridal-beauty" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
+          <div class="aspect-[3/2] overflow-hidden">
+            <img
+              src="/images/services/bridal-makeup.jpg"
+              alt="Full Bridal Beauty makeup and hair service"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+              Full Bridal Beauty
+            </h3>
+            <p class="text-sm text-grey leading-relaxed mb-4">
+              The complete bridal beauty experience &mdash; makeup, hair, skin preparation, and signature finishing touches for your wedding day.
+            </p>
+            <p class="text-sm font-sans font-medium text-gold mb-6">Starting from &euro;450</p>
+            <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+              Learn More
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Card: Pre or Next-Day Styling -->
+        <a href="/services/bridal-beauty#pre-or-next-day-styling" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal style="transition-delay: 100ms">
+          <div class="aspect-[3/2] overflow-hidden">
+            <img
+              src="/images/services/natural-bridal.jpg"
+              alt="Pre or Next-Day Styling for rehearsal and welcome events"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+              Pre or Next-Day Styling
+            </h3>
+            <p class="text-sm text-grey leading-relaxed mb-4">
+              Polished styling for your rehearsal dinner, welcome events, or the day after your wedding.
+            </p>
+            <p class="text-sm font-sans font-medium text-gold mb-6">Starting from &euro;250</p>
+            <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+              Learn More
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Card: Bridesmaids & Guests -->
+        <a href="/services/bridal-beauty#bridesmaids-guests" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
+          <div class="aspect-[3/2] overflow-hidden">
+            <img
+              src="/images/services/natural-blonde-bride.jpg"
+              alt="Bridesmaids and guests makeup and hair styling"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+              Bridesmaids &amp; Guests
+            </h3>
+            <p class="text-sm text-grey leading-relaxed mb-4">
+              Editorial makeup and hair for your bridal party and guests, with group packages available for up to 20 people.
+            </p>
+            <p class="text-sm font-sans font-medium text-gold mb-6">Starting from &euro;150</p>
+            <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+              Learn More
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Card: Event Make-up and Hair -->
+        <a href="/services/bridal-beauty#event-makeup-hair" class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal style="transition-delay: 100ms">
+          <div class="aspect-[3/2] overflow-hidden">
+            <img
+              src="/images/services/bridal-curls-halfup.jpg"
+              alt="Event makeup and hairstyling for special occasions"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+              Event Make-up and Hair
+            </h3>
+            <p class="text-sm text-grey leading-relaxed mb-4">
+              Professional makeup and hairstyling for any special occasion, tailored to your personal style.
+            </p>
+            <p class="text-sm font-sans font-medium text-gold mb-6">Starting from &euro;150</p>
             <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
               Learn More
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
