@@ -16,10 +16,25 @@ export const services = [
 ];
 
 export const signatureServices = [
-  { name: "Full Bridal Beauty (Makeup & Hair)", price: "€450" },
+  {
+    name: "Full Bridal Beauty (Makeup & Hair)",
+    price: "€450",
+    includes: [
+      "Facial massage & skin preparation",
+      "Toners, moisturizers & serums",
+      "Full coverage for chest, shoulders & back",
+      "Premium false lashes",
+      "Veil placement assistance",
+    ],
+  },
   { name: "Bridal Makeup or Hair", price: "€230" },
   { name: "Bridal Trial (Makeup & Hair)", price: "€100" },
-  { name: "Pre or Next-Day Styling", price: "€250" },
+  {
+    name: "Pre or Next-Day Styling",
+    price: "€250",
+    priceNote:
+      "Price applies when booked in combination with another bridal service. Otherwise, the price is €350.",
+  },
 ];
 
 export const luxuryPackages = [
@@ -67,7 +82,12 @@ export const bridesmaidServices = [
 ];
 
 export const eventServices = [
-  { name: "Event Make-up and Hair", price: "€150" },
+  {
+    name: "Event Make-up and Hair",
+    price: "€150",
+    description:
+      "Professional makeup and hairstyling for any special occasion, tailored to your personal style.",
+  },
 ];
 
 export const locations = [
