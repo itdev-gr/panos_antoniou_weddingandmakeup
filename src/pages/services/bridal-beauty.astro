@@ -73,6 +73,11 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
           </div>
         ))}
       </div>
+      {signatureServices.some((s) => s.priceNote) && (
+        <p class="mt-8 text-xs text-grey/70 text-center leading-relaxed italic" data-reveal>
+          {`* ${signatureServices.find((s) => s.priceNote)?.priceNote ?? ''}`}
+        </p>
+      )}
     </div>
   </section>
 
