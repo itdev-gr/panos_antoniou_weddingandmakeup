@@ -127,9 +127,16 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
 
       <div class="space-y-0" data-reveal>
         {eventServices.map((service, i) => (
-          <div class="flex items-center justify-between py-5 border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
-            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
-            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+          <div class="border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+            <div class="flex items-center justify-between py-5">
+              <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+              <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+            </div>
+            {service.description && (
+              <p class="pb-5 -mt-1 text-sm text-grey/90 leading-relaxed">
+                {service.description}
+              </p>
+            )}
           </div>
         ))}
       </div>
