@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "astro check",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.1",

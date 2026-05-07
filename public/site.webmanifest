@@ -1,0 +1,12 @@
+{
+  "name": "Panos Antoniou - Weddings Makeup & Hair",
+  "short_name": "Panos Antoniou",
+  "description": "Luxury bridal makeup & hair services in Santorini, Mykonos, Athens & worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#1B4332",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

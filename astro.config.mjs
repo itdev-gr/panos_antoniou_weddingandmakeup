@@ -4,11 +4,27 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://weddingsmakeupandhair.com',
+  output: 'static',
+  trailingSlash: 'ignore',
+  compressHTML: true,
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+  build: {
+    inlineStylesheets: 'auto',
+    assets: '_astro',
+  },
+  image: {
+    service: { entrypoint: 'astro/assets/services/sharp' },
+  },
   integrations: [
     tailwind(),
     sitemap({
       filter: (page) => !page.includes('/admin'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
     }),
   ],
-  output: 'static',
 });
