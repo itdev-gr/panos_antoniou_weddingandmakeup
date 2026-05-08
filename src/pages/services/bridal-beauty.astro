@@ -111,9 +111,27 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
 
       <div class="space-y-0" data-reveal>
         {bridesmaidServices.map((service, i) => (
-          <div class="flex items-center justify-between py-5 border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
-            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
-            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+          <div class="border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+            <div class="flex items-center justify-between py-5">
+              <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+              <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+            </div>
+            {service.details && (
+              <ul class="pb-5 -mt-1 space-y-1.5 text-sm text-grey/90 leading-relaxed">
+                {service.details.map((detail) => (
+                  <li class="flex items-center justify-between gap-3">
+                    <span class="flex items-start gap-3">
+                      <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                      <span>{detail.label}</span>
+                    </span>
+                    <span class="text-gold/90 font-sans whitespace-nowrap">{detail.price}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {service.note && (
+              <p class="pb-5 text-xs text-grey/70 italic">{service.note}</p>
+            )}
           </div>
         ))}
       </div>
@@ -157,9 +175,25 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
               <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
             </div>
             {service.description && (
-              <p class="pb-5 -mt-1 text-sm text-grey/90 leading-relaxed">
+              <p class="pb-3 -mt-1 text-sm text-grey/90 leading-relaxed">
                 {service.description}
               </p>
+            )}
+            {service.details && (
+              <ul class="pb-5 space-y-1.5 text-sm text-grey/90 leading-relaxed">
+                {service.details.map((detail) => (
+                  <li class="flex items-center justify-between gap-3">
+                    <span class="flex items-start gap-3">
+                      <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                      <span>{detail.label}</span>
+                    </span>
+                    <span class="text-gold/90 font-sans whitespace-nowrap">{detail.price}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {service.note && (
+              <p class="pb-5 text-xs text-grey/70 italic">{service.note}</p>
             )}
           </div>
         ))}
