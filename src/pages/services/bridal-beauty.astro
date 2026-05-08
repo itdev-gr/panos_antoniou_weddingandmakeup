@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import CTABanner from '../../components/home/CTABanner.astro';
-import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } from '../../data/services';
+import { signatureServices, luxuryPackages, bridesmaidServices, eventServices, additionalBridalServices } from '../../data/services';
 ---
 
 <PageLayout
@@ -201,8 +201,55 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
     </div>
   </section>
 
-  <!-- Luxury Packages -->
+  <!-- Photoshoots & Groom -->
   <section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+    <div class="container-content">
+      <div class="text-center mb-14" data-reveal>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+          Beyond the Bridal
+        </p>
+        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+          Photoshoots &amp; Groom's Beauty
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {additionalBridalServices.map((service, i) => (
+          <div
+            class="border border-gold/20 p-8 lg:p-10 hover:border-gold/50 transition-colors duration-300 flex flex-col"
+            data-reveal
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <h3 class="text-xl font-serif italic text-charcoal mb-3 text-center">{service.name}</h3>
+            <p class="text-lg font-sans font-medium text-gold mb-5 text-center">Starting from {service.price}</p>
+            <div class="w-8 h-px bg-gold/40 mx-auto mb-5"></div>
+            {service.description && (
+              <p class="text-sm text-grey leading-relaxed mb-5">{service.description}</p>
+            )}
+            {service.details && (
+              <ul class="space-y-2 text-sm text-grey/90 mb-5">
+                {service.details.map((d) => (
+                  <li class="flex items-start justify-between gap-3">
+                    <span class="flex items-start gap-3">
+                      <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                      <span>{d.label}</span>
+                    </span>
+                    <span class="text-gold/90 font-sans whitespace-nowrap">{d.price}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {service.note && (
+              <p class="mt-auto text-xs text-grey/70 italic text-center">{service.note}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Luxury Packages -->
+  <section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
     <div class="container-content">
       <div class="text-center mb-14" data-reveal>
         <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
@@ -231,7 +278,7 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices } 
   </section>
 
   <!-- Booking Terms & Travel -->
-  <section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+  <section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
     <div class="container-content">
       <div class="text-center mb-14" data-reveal>
         <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">

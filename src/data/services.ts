@@ -114,6 +114,65 @@ export const eventServices = [
   },
 ];
 
+export const additionalBridalServices = [
+  {
+    name: "Photoshoot",
+    price: "€350",
+    description:
+      "For Flying Dress photoshoots, family, couples, proposals, pre or next-day, and fashion sessions.",
+    details: [
+      { label: "Just Makeup", price: "€160" },
+      { label: "Just Hair", price: "€160" },
+    ],
+    note: "1.5 hrs for both services",
+  },
+  {
+    name: "Light & Simple",
+    price: "€250",
+    description:
+      "Natural-glow makeup with soft waves or a sleek bun, designed for high-end photography.",
+    note: "1 hr for both services",
+  },
+  {
+    name: "Groom's Party",
+    price: "€150",
+    description: "Grooming and styling for the groom's side.",
+    details: [
+      { label: "Traditional Razor Shave", price: "+€100" },
+      { label: "Executive Haircut & Finishing", price: "+€100" },
+    ],
+  },
+];
+
+export const sameSexWeddingPackages = [
+  {
+    name: "Double Bridal Glow",
+    price: "€1,000",
+    id: "double-bridal-glow",
+    description:
+      "A coordinated beauty experience for two brides, ensuring a harmonious and high-end aesthetic for your wedding gallery.",
+    details: [
+      { label: "Full Bridal Harmony Look (Hair & Makeup for both brides)", price: "€1,000" },
+      { label: "Coordinated Styling (Hair or Makeup only)", price: "€250" },
+    ],
+    features: ["On-site luxury service", "2 artists"],
+    note: "3.5 hrs for both brides",
+  },
+  {
+    name: "Groomed & Polished",
+    price: "€300",
+    id: "groomed-and-polished",
+    description:
+      "Expert grooming for the groom duo. Tailored services to ensure a sharp, sophisticated, and camera-ready look.",
+    details: [
+      { label: "Double Grooming & Styling (skincare, hair styling & light touch-ups for both)", price: "€300" },
+      { label: "The Sharp Duo (executive haircut & beard grooming for both)", price: "+€180" },
+    ],
+    features: ["High-definition, camera-ready finish", "2 artists"],
+    note: "2.5 hrs for both grooms",
+  },
+];
+
 export const locations = [
   "Santorini",
   "Mykonos",

@@ -14,6 +14,7 @@ const serviceLinks = [
   { label: "Bridal Makeup & Hair", href: "/services/bridal-beauty" },
   { label: "Wedding Planning", href: "/services/wedding-planning" },
   { label: "The Bridal Lounge", href: "/bridal-lounge" },
+  { label: "Download Pricelist (PDF)", href: "/brochure/panos-antoniou-pricelist.pdf", download: true },
 ];
 
 const locations = ["Santorini", "Mykonos", "Athens", "Greece", "Worldwide"];
@@ -80,6 +81,7 @@ const locations = ["Santorini", "Mykonos", "Athens", "Greece", "Worldwide"];
             <li>
               <a
                 href={link.href}
+                download={link.download}
                 class="text-sm text-white/75 hover:text-white transition-colors duration-300 inline-block"
               >
                 {link.label}

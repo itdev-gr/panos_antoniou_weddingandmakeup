@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import CTABanner from '../../components/home/CTABanner.astro';
-import { planningServices } from '../../data/services';
+import { planningServices, sameSexWeddingPackages } from '../../data/services';
 ---
 
 <PageLayout
@@ -89,7 +89,7 @@ import { planningServices } from '../../data/services';
       </div>
 
       <!-- Category C: Proposals & Vow Renewals -->
-      <div data-reveal>
+      <div class="mb-20" data-reveal>
         <div class="text-center mb-10">
           <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
             Category C
@@ -106,6 +106,63 @@ import { planningServices } from '../../data/services';
             <div class="flex items-center justify-between py-5 border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
               <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
               <span class="text-sm font-sans font-medium text-forest-green ml-4 whitespace-nowrap">Starting from {service.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Category D: Same Sex Wedding -->
+      <div id="same-sex-wedding" data-reveal>
+        <div class="text-center mb-10">
+          <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+            Category D
+          </p>
+          <h2 class="text-display-sm font-serif italic text-charcoal mb-4">
+            Same Sex Wedding
+          </h2>
+          <p class="text-sm text-grey leading-relaxed max-w-lg mx-auto">
+            Coordinated beauty and grooming experiences designed around two brides or two grooms &mdash; synchronized aesthetics, twin styling, and a dedicated team of artists.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {sameSexWeddingPackages.map((pkg, i) => (
+            <div
+              id={pkg.id}
+              class="bg-white border border-gold/20 p-8 lg:p-10 hover:border-gold/50 transition-colors duration-300 flex flex-col scroll-mt-28"
+              style={`transition-delay: ${i * 100}ms`}
+            >
+              <h3 class="text-xl font-serif italic text-charcoal mb-3">{pkg.name}</h3>
+              <p class="text-lg font-sans font-medium text-forest-green mb-5">Starting from {pkg.price}</p>
+              <div class="w-8 h-px bg-gold/40 mb-5"></div>
+              {pkg.description && (
+                <p class="text-sm text-grey leading-relaxed mb-5 italic">{pkg.description}</p>
+              )}
+              {pkg.details && (
+                <ul class="space-y-2.5 text-sm text-grey/90 mb-5">
+                  {pkg.details.map((d) => (
+                    <li class="flex items-start justify-between gap-3">
+                      <span class="flex items-start gap-3">
+                        <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                        <span>{d.label}</span>
+                      </span>
+                      <span class="text-gold/90 font-sans whitespace-nowrap">{d.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {pkg.features && (
+                <ul class="space-y-1.5 text-sm text-grey/80 mb-5">
+                  {pkg.features.map((f) => (
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1 h-1 rounded-full bg-gold/40 flex-shrink-0"></span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {pkg.note && (
+                <p class="mt-auto text-xs text-grey/70 italic">{pkg.note}</p>
+              )}
             </div>
           ))}
         </div>
