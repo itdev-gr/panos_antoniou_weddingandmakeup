@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import CTABanner from '../../components/home/CTABanner.astro';
-import { signatureServices, luxuryPackages, bridesmaidServices, eventServices, additionalBridalServices } from '../../data/services';
+import { signatureServices, luxuryPackages, bridesmaidServices, additionalBridalServices, sameSexWeddingPackages } from '../../data/services';
 ---
 
 <PageLayout
@@ -89,8 +89,8 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices, a
     </div>
   </section>
 
-  <!-- Bridesmaids & Guests -->
-  <section id="bridesmaids-guests" class="bg-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
+  <!-- Bridal Party & Event Beauty -->
+  <section id="bridal-party-event-beauty" class="bg-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
     <div class="container-content max-w-narrow mx-auto">
       <div class="text-center mb-14" data-reveal>
         <div class="w-48 md:w-56 mx-auto mb-8 overflow-hidden">
@@ -105,7 +105,7 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices, a
           For Your Loved Ones
         </p>
         <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
-          Bridesmaids &amp; Guests
+          Bridal Party &amp; Event Beauty
         </h2>
       </div>
 
@@ -114,7 +114,7 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices, a
           <div class="border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
             <div class="flex items-center justify-between py-5">
               <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
-              <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
+              <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price} | *&euro;160</span>
             </div>
             {service.details && (
               <ul class="pb-5 -mt-1 space-y-1.5 text-sm text-grey/90 leading-relaxed">
@@ -143,57 +143,65 @@ import { signatureServices, luxuryPackages, bridesmaidServices, eventServices, a
         <p class="text-sm text-grey/80 leading-relaxed italic">
           Group packages available for up to 20 people.
         </p>
+        <p class="text-sm text-grey/80 leading-relaxed italic">
+          *Exclusive rates available only when Bridal Hair &amp; Makeup services have been booked by the bride.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Event Make-up and Hair -->
-  <section id="event-makeup-hair" class="bg-off-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
+  <!-- Same Sex Wedding -->
+  <section id="same-sex-wedding" class="bg-off-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
     <div class="container-content max-w-narrow mx-auto">
       <div class="text-center mb-14" data-reveal>
-        <div class="w-48 md:w-56 mx-auto mb-8 overflow-hidden">
-          <img
-            src="/images/services/bridal-curls-halfup.jpg"
-            alt="Half-up curls hair styling"
-            class="w-full aspect-[4/5] object-cover"
-            loading="lazy"
-          />
-        </div>
         <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
-          Beyond the Wedding
+          For Both Brides or Grooms
         </p>
-        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
-          Event Make-up and Hair
+        <h2 class="text-display-sm md:text-display font-serif italic text-charcoal mb-4">
+          Same Sex Wedding
         </h2>
+        <p class="text-sm text-grey leading-relaxed max-w-lg mx-auto">
+          Coordinated beauty and grooming experiences designed around two brides or two grooms &mdash; synchronized aesthetics, twin styling, and a dedicated team of artists.
+        </p>
       </div>
-
-      <div class="space-y-0" data-reveal>
-        {eventServices.map((service, i) => (
-          <div class="border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
-            <div class="flex items-center justify-between py-5">
-              <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
-              <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">Starting from {service.price}</span>
-            </div>
-            {service.description && (
-              <p class="pb-3 -mt-1 text-sm text-grey/90 leading-relaxed">
-                {service.description}
-              </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-reveal>
+        {sameSexWeddingPackages.map((pkg, i) => (
+          <div
+            id={pkg.id}
+            class="bg-white border border-gold/20 p-8 lg:p-10 hover:border-gold/50 transition-colors duration-300 flex flex-col scroll-mt-28"
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <h3 class="text-xl font-serif italic text-charcoal mb-3">{pkg.name}</h3>
+            <p class="text-lg font-sans font-medium text-gold mb-5">Starting from {pkg.price}</p>
+            <div class="w-8 h-px bg-gold/40 mb-5"></div>
+            {pkg.description && (
+              <p class="text-sm text-grey leading-relaxed mb-5 italic">{pkg.description}</p>
             )}
-            {service.details && (
-              <ul class="pb-5 space-y-1.5 text-sm text-grey/90 leading-relaxed">
-                {service.details.map((detail) => (
-                  <li class="flex items-center justify-between gap-3">
+            {pkg.details && (
+              <ul class="space-y-2.5 text-sm text-grey/90 mb-5">
+                {pkg.details.map((d) => (
+                  <li class="flex items-start justify-between gap-3">
                     <span class="flex items-start gap-3">
                       <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
-                      <span>{detail.label}</span>
+                      <span>{d.label}</span>
                     </span>
-                    <span class="text-gold/90 font-sans whitespace-nowrap">{detail.price}</span>
+                    <span class="text-gold/90 font-sans whitespace-nowrap">{d.price}</span>
                   </li>
                 ))}
               </ul>
             )}
-            {service.note && (
-              <p class="pb-5 text-xs text-grey/70 italic">{service.note}</p>
+            {pkg.features && (
+              <ul class="space-y-1.5 text-sm text-grey/80 mb-5">
+                {pkg.features.map((f) => (
+                  <li class="flex items-start gap-3">
+                    <span class="mt-2 w-1 h-1 rounded-full bg-gold/40 flex-shrink-0"></span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {pkg.note && (
+              <p class="mt-auto text-xs text-grey/70 italic">{pkg.note}</p>
             )}
           </div>
         ))}

@@ -60,19 +60,107 @@ export const luxuryPackages = [
   },
 ];
 
+const fullPlanningIncludes = [
+  "Continuous communication with the couple",
+  "Wedding planning guidance & consultation",
+  "Venue scouting & vendor recommendations",
+  "Vendor management & booking assistance",
+  "Budget management",
+  "Wedding day coordination",
+  "Vendors timetable & scheduling management",
+];
+
 export const planningServices = {
   fullPlanning: [
-    { name: "Intimate Weddings (up to 30 guests)", price: "€1,500" },
-    { name: "Grand Celebrations (up to 100 guests)", price: "€3,500" },
+    {
+      name: "Intimate Weddings (up to 30 guests)",
+      price: "€2,000",
+      startingFrom: true,
+      includes: fullPlanningIncludes,
+    },
+    {
+      name: "Grand Celebrations (up to 100 guests)",
+      price: "€4,500",
+      startingFrom: true,
+      includes: fullPlanningIncludes,
+    },
   ],
   elopements: [
-    { name: "Essential Elopement Package", price: "€1,200" },
-    { name: "Premium Elopement Experience", price: "€1,800" },
-    { name: "Luxury Elopement (with full styling & photography)", price: "€2,800" },
+    {
+      name: "Essential Elopement Package",
+      price: "€7,700",
+      includes: [
+        "Planning",
+        "Venue",
+        "Dinner",
+        "Arch setup",
+        "Celebrant",
+        "Wedding cake",
+        "Photographer & Videography",
+        "Flowers & candles",
+        "Bridal Hair & Makeup",
+        "Transportation",
+      ],
+    },
+    {
+      name: "Premium Elopement Experience",
+      price: "€9,700",
+      includes: [
+        "Planning",
+        "Venue",
+        "Dinner",
+        "Premium floral & decoration setup",
+        "Celebrant",
+        "Wedding cake",
+        "Photographer & Videography",
+        "Flowers & candles",
+        "Bridal Hair & Makeup",
+        "Transportation",
+      ],
+    },
   ],
   proposals: [
-    { name: "Proposal Essential", price: "€500" },
-    { name: "Luxury Proposal Design", price: "€1,200" },
+    {
+      name: "Proposal Essential",
+      price: "€4,500",
+      includes: [
+        "Secret & discreet planning",
+        "Venue",
+        "Letters setup",
+        "Heart arch, flowers & candles",
+        "Photographer & Videography",
+        "Transportation",
+      ],
+    },
+    {
+      name: "Luxury Proposal Design",
+      price: "€6,900",
+      includes: [
+        "Secret & discreet planning",
+        "Venue",
+        "Letters setup",
+        "Heart arch, flowers & candles",
+        "Photographer & Videography",
+        "Transportation",
+        "Fireworks",
+        "Private dinner setup",
+      ],
+    },
+  ],
+  sailingExperience: [
+    {
+      name: "Sailing Experience",
+      price: "€6,900",
+      includes: [
+        "Secret & discreet planning",
+        "Private yacht (5 hours)",
+        "Photographer & Videography",
+        "Dinner",
+        "Champagne",
+        "Transportation",
+        "Flowers & décor",
+      ],
+    },
   ],
 };
 
@@ -97,29 +185,12 @@ export const bridesmaidServices = [
   },
 ];
 
-export const eventServices = [
-  {
-    name: "Event Make-up and Hair",
-    price: "€160",
-    description:
-      "Professional makeup and hairstyling for any special occasion, tailored to your personal style.",
-    details: [
-      { label: "Makeup Only", price: "€90" },
-      { label: "Hair Only", price: "€90" },
-      { label: "Group of 3 (per person)", price: "€150" },
-      { label: "Group of 4 (per person)", price: "€140" },
-      { label: "Group of 5 or more (per person)", price: "€130" },
-    ],
-    note: "40 min per service",
-  },
-];
-
 export const additionalBridalServices = [
   {
     name: "Photoshoot",
     price: "€350",
     description:
-      "For Flying Dress photoshoots, family, couples, proposals, pre or next-day, and fashion sessions.",
+      "For Flying Dress photoshoots, proposals, pre or next-day, and fashion sessions.",
     details: [
       { label: "Just Makeup", price: "€160" },
       { label: "Just Hair", price: "€160" },
@@ -130,7 +201,7 @@ export const additionalBridalServices = [
     name: "Light & Simple",
     price: "€250",
     description:
-      "Natural-glow makeup with soft waves or a sleek bun, designed for high-end photography.",
+      "Natural-glow makeup with soft waves or a sleek bun.",
     note: "1 hr for both services",
   },
   {
