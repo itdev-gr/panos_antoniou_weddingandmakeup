@@ -1,6 +1,4 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
-import BlogIndexPage from '../../components/pages/BlogIndexPage.astro';
 import enDict from '../../i18n/en/blog';
 import elDict from '../../i18n/el/blog';
 import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
@@ -9,10 +7,4 @@ const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
 ---
 
-<PageLayout
-  title={t('index.meta.title')}
-  description={t('index.meta.description')}
-  transparentHeader={true}
->
-  <BlogIndexPage />
-</PageLayout>
+<Fragment set:html={t('santoriniDreamWedding.body')} />

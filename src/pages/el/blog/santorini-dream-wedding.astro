@@ -1,9 +1,9 @@
 ---
-import BlogLayout from '../../layouts/BlogLayout.astro';
-import BlogSantoriniDreamWeddingPage from '../../components/pages/BlogSantoriniDreamWeddingPage.astro';
-import enDict from '../../i18n/en/blog';
-import elDict from '../../i18n/el/blog';
-import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import BlogSantoriniDreamWeddingPage from '../../../components/pages/BlogSantoriniDreamWeddingPage.astro';
+import enDict from '../../../i18n/en/blog';
+import elDict from '../../../i18n/el/blog';
+import { isLocale, useTranslations, type Locale } from '../../../i18n/utils';
 
 const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
