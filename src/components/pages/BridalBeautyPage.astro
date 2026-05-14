@@ -1,0 +1,410 @@
+---
+import CTABanner from '../home/CTABanner.astro';
+import enDict from '../../i18n/en/bridal-beauty';
+import elDict from '../../i18n/el/bridal-beauty';
+import { isLocale, useTranslations, getEntry, localizedPath, type Locale } from '../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const dict = { en: enDict, el: elDict };
+const t = useTranslations(dict, lang);
+
+type SignatureItem = {
+  id?: string;
+  name: string;
+  price: string;
+  includes?: string[];
+  hasPriceNote?: boolean;
+};
+
+type DetailRow = { label: string; price: string };
+
+type BridesmaidsItem = {
+  name: string;
+  price: string;
+  details?: DetailRow[];
+  note?: string;
+};
+
+type SameSexPackage = {
+  id?: string;
+  name: string;
+  price: string;
+  description?: string;
+  details?: DetailRow[];
+  features?: string[];
+  note?: string;
+};
+
+type AdditionalItem = {
+  name: string;
+  price: string;
+  description?: string;
+  details?: DetailRow[];
+  note?: string;
+};
+
+type LuxuryItem = {
+  name: string;
+  price: string;
+  includes: string;
+};
+
+const signatureItems = getEntry<SignatureItem[]>(dict, lang, 'signature.items');
+const bridesmaidsItems = getEntry<BridesmaidsItem[]>(dict, lang, 'bridesmaids.items');
+const bridesmaidsFootnotes = getEntry<string[]>(dict, lang, 'bridesmaids.footnotes');
+const sameSexPackages = getEntry<SameSexPackage[]>(dict, lang, 'sameSex.packages');
+const additionalItems = getEntry<AdditionalItem[]>(dict, lang, 'additional.items');
+const luxuryItems = getEntry<LuxuryItem[]>(dict, lang, 'packages.items');
+
+const sigStartingFrom = t('signature.startingFrom');
+const bridesmaidsStartingFrom = t('bridesmaids.startingFrom');
+const bridesmaidsRateSuffix = t('bridesmaids.exclusiveRateSuffix');
+const sameSexStartingFrom = t('sameSex.startingFrom');
+const additionalStartingFrom = t('additional.startingFrom');
+const packagesStartingFrom = t('packages.startingFrom');
+const sigPriceNote = t('signature.priceNote');
+const contactHref = localizedPath('/contact', lang);
+---
+
+<!-- Hero -->
+<section class="relative min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img
+      src="/images/services/bridal-beauty-hero.jpg"
+      alt={t('hero.imageAlt')}
+      class="w-full h-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-near-black/70 via-near-black/50 to-near-black/70"></div>
+  </div>
+  <div class="container-content px-6 lg:px-12 text-center relative z-10">
+    <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white leading-tight mb-6" data-reveal>
+      {t('hero.title')}
+    </h1>
+    <p class="text-sm md:text-base font-sans tracking-widest-plus uppercase text-white/60" data-reveal>
+      {t('hero.subtitle')}
+    </p>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content max-w-narrow mx-auto text-center" data-reveal>
+    <div class="flex items-center justify-center gap-3 mb-10">
+      <div class="w-10 h-px bg-gold"></div>
+      <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+      <div class="w-10 h-px bg-gold"></div>
+    </div>
+    <p class="text-base md:text-lg font-serif text-grey leading-relaxed">
+      {t('philosophy.body')}
+    </p>
+  </div>
+</section>
+
+<!-- Signature Services -->
+<section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content max-w-narrow mx-auto">
+    <div class="text-center mb-14" data-reveal>
+      <div class="w-48 md:w-56 mx-auto mb-8 overflow-hidden">
+        <img
+          src="/images/services/bridal-makeup.jpg"
+          alt={t('signature.imageAlt')}
+          class="w-full aspect-[4/5] object-cover"
+          loading="lazy"
+        />
+      </div>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('signature.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+        {t('signature.heading')}
+      </h2>
+    </div>
+
+    <div class="space-y-0" data-reveal>
+      {signatureItems.map((service, i) => (
+        <div
+          id={service.id}
+          class="border-b border-gold/20 scroll-mt-28"
+          style={`transition-delay: ${i * 80}ms`}
+        >
+          <div class="flex items-center justify-between py-5">
+            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">
+              {sigStartingFrom} {service.price}{service.hasPriceNote ? '*' : ''}
+            </span>
+          </div>
+          {service.includes && (
+            <ul class="pb-5 -mt-1 space-y-1.5 text-sm text-grey/90 leading-relaxed">
+              {service.includes.map((item) => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+    {signatureItems.some((s) => s.hasPriceNote) && (
+      <p class="mt-8 text-xs text-grey/70 text-center leading-relaxed italic" data-reveal>
+        {`* ${sigPriceNote}`}
+      </p>
+    )}
+  </div>
+</section>
+
+<!-- Bridal Party & Event Beauty -->
+<section id="bridal-party-event-beauty" class="bg-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
+  <div class="container-content max-w-narrow mx-auto">
+    <div class="text-center mb-14" data-reveal>
+      <div class="w-48 md:w-56 mx-auto mb-8 overflow-hidden">
+        <img
+          src="/images/services/natural-blonde-bride.jpg"
+          alt={t('bridesmaids.imageAlt')}
+          class="w-full aspect-[4/5] object-cover"
+          loading="lazy"
+        />
+      </div>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('bridesmaids.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+        {t('bridesmaids.heading')}
+      </h2>
+    </div>
+
+    <div class="space-y-0" data-reveal>
+      {bridesmaidsItems.map((service, i) => (
+        <div class="border-b border-gold/20" style={`transition-delay: ${i * 80}ms`}>
+          <div class="flex items-center justify-between py-5">
+            <span class="text-base md:text-lg font-serif text-charcoal">{service.name}</span>
+            <span class="text-sm font-sans font-medium text-gold ml-4 whitespace-nowrap">
+              {bridesmaidsStartingFrom} {service.price} {bridesmaidsRateSuffix}
+            </span>
+          </div>
+          {service.details && (
+            <ul class="pb-5 -mt-1 space-y-1.5 text-sm text-grey/90 leading-relaxed">
+              {service.details.map((detail) => (
+                <li class="flex items-center justify-between gap-3">
+                  <span class="flex items-start gap-3">
+                    <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                    <span>{detail.label}</span>
+                  </span>
+                  <span class="text-gold/90 font-sans whitespace-nowrap">{detail.price}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {service.note && (
+            <p class="pb-5 text-xs text-grey/70 italic">{service.note}</p>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center space-y-2" data-reveal>
+      {bridesmaidsFootnotes.map((note) => (
+        <p class="text-sm text-grey/80 leading-relaxed italic">{note}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Same Sex Wedding -->
+<section id="same-sex-wedding" class="bg-off-white py-20 lg:py-28 px-6 lg:px-12 scroll-mt-28">
+  <div class="container-content max-w-narrow mx-auto">
+    <div class="text-center mb-14" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('sameSex.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal mb-4">
+        {t('sameSex.heading')}
+      </h2>
+      <p class="text-sm text-grey leading-relaxed max-w-lg mx-auto">
+        {t('sameSex.intro')}
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-reveal>
+      {sameSexPackages.map((pkg, i) => (
+        <div
+          id={pkg.id}
+          class="bg-white border border-gold/20 p-8 lg:p-10 hover:border-gold/50 transition-colors duration-300 flex flex-col scroll-mt-28"
+          style={`transition-delay: ${i * 100}ms`}
+        >
+          <h3 class="text-xl font-serif italic text-charcoal mb-3">{pkg.name}</h3>
+          <p class="text-lg font-sans font-medium text-gold mb-5">
+            {sameSexStartingFrom} {pkg.price}
+          </p>
+          <div class="w-8 h-px bg-gold/40 mb-5"></div>
+          {pkg.description && (
+            <p class="text-sm text-grey leading-relaxed mb-5 italic">{pkg.description}</p>
+          )}
+          {pkg.details && (
+            <ul class="space-y-2.5 text-sm text-grey/90 mb-5">
+              {pkg.details.map((d) => (
+                <li class="flex items-start justify-between gap-3">
+                  <span class="flex items-start gap-3">
+                    <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                    <span>{d.label}</span>
+                  </span>
+                  <span class="text-gold/90 font-sans whitespace-nowrap">{d.price}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {pkg.features && (
+            <ul class="space-y-1.5 text-sm text-grey/80 mb-5">
+              {pkg.features.map((f) => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-2 w-1 h-1 rounded-full bg-gold/40 flex-shrink-0"></span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {pkg.note && (
+            <p class="mt-auto text-xs text-grey/70 italic">{pkg.note}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Photoshoots & Groom -->
+<section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content">
+    <div class="text-center mb-14" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('additional.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+        {t('additional.heading')}
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {additionalItems.map((service, i) => (
+        <div
+          class="border border-gold/20 p-8 lg:p-10 hover:border-gold/50 transition-colors duration-300 flex flex-col"
+          data-reveal
+          style={`transition-delay: ${i * 100}ms`}
+        >
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 text-center">{service.name}</h3>
+          <p class="text-lg font-sans font-medium text-gold mb-5 text-center">
+            {additionalStartingFrom} {service.price}
+          </p>
+          <div class="w-8 h-px bg-gold/40 mx-auto mb-5"></div>
+          {service.description && (
+            <p class="text-sm text-grey leading-relaxed mb-5">{service.description}</p>
+          )}
+          {service.details && (
+            <ul class="space-y-2 text-sm text-grey/90 mb-5">
+              {service.details.map((d) => (
+                <li class="flex items-start justify-between gap-3">
+                  <span class="flex items-start gap-3">
+                    <span class="mt-2 w-1 h-1 rounded-full bg-gold/60 flex-shrink-0"></span>
+                    <span>{d.label}</span>
+                  </span>
+                  <span class="text-gold/90 font-sans whitespace-nowrap">{d.price}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {service.note && (
+            <p class="mt-auto text-xs text-grey/70 italic text-center">{service.note}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Luxury Packages -->
+<section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content">
+    <div class="text-center mb-14" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('packages.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+        {t('packages.heading')}
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {luxuryItems.map((pkg, i) => (
+        <div
+          class="border border-gold/20 p-8 lg:p-10 text-center hover:border-gold/50 transition-colors duration-300"
+          data-reveal
+          style={`transition-delay: ${i * 100}ms`}
+        >
+          <h3 class="text-xl font-serif italic text-charcoal mb-4">{pkg.name}</h3>
+          <p class="text-lg font-sans font-medium text-gold mb-6">
+            {packagesStartingFrom} {pkg.price}
+          </p>
+          <div class="w-8 h-px bg-gold/40 mx-auto mb-6"></div>
+          <p class="text-sm text-grey leading-relaxed">{pkg.includes}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Booking Terms & Travel -->
+<section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content">
+    <div class="text-center mb-14" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('booking.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+        {t('booking.heading')}
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+      <!-- Location -->
+      <div class="text-center" data-reveal>
+        <div class="w-12 h-12 rounded-full bg-white border border-gold/30 flex items-center justify-center mx-auto mb-5">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-serif italic text-charcoal mb-3">{t('booking.location.title')}</h3>
+        <p class="text-sm text-grey leading-relaxed">{t('booking.location.body')}</p>
+      </div>
+
+      <!-- Retainer -->
+      <div class="text-center" data-reveal style="transition-delay: 100ms">
+        <div class="w-12 h-12 rounded-full bg-white border border-gold/30 flex items-center justify-center mx-auto mb-5">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-serif italic text-charcoal mb-3">{t('booking.retainer.title')}</h3>
+        <p class="text-sm text-grey leading-relaxed">{t('booking.retainer.body')}</p>
+      </div>
+
+      <!-- Travel Fees -->
+      <div class="text-center md:col-span-2 lg:col-span-1" data-reveal style="transition-delay: 200ms">
+        <div class="w-12 h-12 rounded-full bg-white border border-gold/30 flex items-center justify-center mx-auto mb-5">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+          </svg>
+        </div>
+        <h3 class="text-base font-serif italic text-charcoal mb-3">{t('booking.travel.title')}</h3>
+        <p class="text-sm text-grey leading-relaxed">{t('booking.travel.body')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<CTABanner
+  title={t('cta.title')}
+  buttonText={t('cta.buttonText')}
+  buttonHref={contactHref}
+/>

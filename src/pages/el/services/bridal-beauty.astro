@@ -1,0 +1,14 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import BridalBeautyPage from '../../../components/pages/BridalBeautyPage.astro';
+import enDict from '../../../i18n/en/bridal-beauty';
+import elDict from '../../../i18n/el/bridal-beauty';
+import { isLocale, useTranslations, type Locale } from '../../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'el';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
+---
+
+<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+  <BridalBeautyPage />
+</PageLayout>
