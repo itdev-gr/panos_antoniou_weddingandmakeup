@@ -1,4 +1,9 @@
 ---
+import enHome from '../../i18n/en/home';
+import elHome from '../../i18n/el/home';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enHome, el: elHome }, lang);
 ---
 <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
   <img
@@ -10,26 +15,26 @@
 
   <div class="relative z-10 px-6 max-w-3xl" data-reveal>
     <p class="text-[11px] font-sans font-medium tracking-[0.25em] uppercase text-white/60 mb-6">
-      Santorini · Greece · Worldwide
+      {t('hero.eyebrow')}
     </p>
     <h1 class="font-serif text-display-xl font-light tracking-wide mb-5">
-      Panos Antoniou
+      {t('hero.name')}
     </h1>
     <p class="font-serif text-xl md:text-2xl font-semibold italic text-white/85 mb-3">
-      The Mastery of Bridal Beauty &amp; Wedding Design
+      {t('hero.tagline')}
     </p>
     <p class="text-sm font-medium text-white/60 max-w-lg mx-auto leading-relaxed mb-10">
-      Crafting timeless elegance and bespoke wedding experiences in Santorini and beyond.
+      {t('hero.subtitle')}
     </p>
     <a
-      href="/contact"
+      href={localizedPath('/contact', lang)}
       class="inline-flex items-center justify-center px-9 py-4 bg-forest-green text-white text-xs font-sans font-medium tracking-[0.12em] uppercase hover:bg-green-light transition-all duration-300"
     >
-      Check Availability
+      {t('hero.cta')}
     </a>
   </div>
 
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-sans tracking-[0.15em] uppercase text-white/30 animate-bounce-slow">
-    Scroll ↓
+    {t('hero.scroll')}
   </div>
 </section>

@@ -1,12 +1,17 @@
 ---
+import enHome from '../../i18n/en/home';
+import elHome from '../../i18n/el/home';
+import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enHome, el: elHome }, lang);
 ---
 <section class="bg-off-white py-24 lg:py-32 px-6 lg:px-12">
   <div class="container-content text-center">
     <p class="text-[10px] font-sans font-medium tracking-[0.2em] uppercase text-gold mb-3">
-      @weddingsmakeupandhair
+      {t('instagram.eyebrow')}
     </p>
     <h2 class="font-serif text-display text-charcoal mb-4">
-      Follow Our Journey
+      {t('instagram.title')}
     </h2>
     <div class="flex items-center justify-center gap-3 mb-8">
       <div class="w-10 h-px bg-gold"></div>
@@ -14,7 +19,7 @@
       <div class="w-10 h-px bg-gold"></div>
     </div>
     <p class="text-sm font-light text-grey leading-relaxed max-w-lg mx-auto mb-10">
-      See our latest work and behind-the-scenes moments on Instagram.
+      {t('instagram.body')}
     </p>
 
     <div class="max-w-xl mx-auto">
@@ -33,7 +38,7 @@
       rel="noopener"
       class="inline-flex items-center gap-2 mt-8 text-xs font-sans font-medium tracking-[0.1em] uppercase text-forest-green hover:text-green-light transition-colors duration-300"
     >
-      Follow Us on Instagram →
+      {t('instagram.cta')}
     </a>
   </div>
 </section>

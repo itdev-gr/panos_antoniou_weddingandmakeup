@@ -1,13 +1,44 @@
 ---
-import { services } from '../../data/services';
+import enHome from '../../i18n/en/home';
+import elHome from '../../i18n/el/home';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enHome, el: elHome }, lang);
+
+const serviceCards = [
+  {
+    href: localizedPath('/services/bridal-beauty', lang),
+    image: '/images/services/bridal-closeup.jpg',
+    title: t('services.bridalTitle'),
+    desc: t('services.bridalDesc'),
+    price: t('services.bridalPrice'),
+    cta: t('services.viewDetails'),
+  },
+  {
+    href: localizedPath('/services/wedding-planning', lang),
+    image: '/images/services/ceremony-caldera.jpg',
+    title: t('services.planningTitle'),
+    desc: t('services.planningDesc'),
+    price: t('services.planningPrice'),
+    cta: t('services.viewDetails'),
+  },
+  {
+    href: localizedPath('/contact', lang),
+    image: '/images/services/wedding-arch-sunset.jpg',
+    title: t('services.combinedTitle'),
+    desc: t('services.combinedDesc'),
+    price: t('services.combinedPrice'),
+    cta: t('services.getInTouch'),
+  },
+];
 ---
 <section class="bg-white py-24 lg:py-32 px-6 lg:px-12">
   <div class="container-content">
     <p class="text-[10px] font-sans font-medium tracking-[0.2em] uppercase text-gold text-center mb-3">
-      Our Services
+      {t('services.eyebrow')}
     </p>
     <h2 class="font-serif text-display text-charcoal text-center mb-4">
-      A Complete Wedding Experience
+      {t('services.title')}
     </h2>
     <div class="flex items-center justify-center gap-3 mb-14">
       <div class="w-10 h-px bg-gold"></div>
@@ -16,8 +47,8 @@ import { services } from '../../data/services';
     </div>
 
     <div class="grid md:grid-cols-3 gap-8" data-reveal>
-      {services.map((service) => (
-        <a href={service.slug} class="group bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+      {serviceCards.map((service) => (
+        <a href={service.href} class="group bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
           <div class="aspect-[4/3] overflow-hidden">
             <img
               src={service.image}
@@ -27,32 +58,14 @@ import { services } from '../../data/services';
           </div>
           <div class="p-6">
             <h3 class="font-serif text-lg text-charcoal mb-2">{service.title}</h3>
-            <p class="text-sm text-grey/70 leading-relaxed mb-4">{service.description}</p>
+            <p class="text-sm text-grey/70 leading-relaxed mb-4">{service.desc}</p>
             <p class="text-sm text-forest-green font-medium">{service.price}</p>
             <span class="text-[10px] font-sans font-medium tracking-[0.1em] uppercase text-forest-green mt-3 inline-block">
-              View Details →
+              {service.cta}
             </span>
           </div>
         </a>
       ))}
-
-      <a href="/contact" class="group bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <div class="aspect-[4/3] overflow-hidden">
-          <img
-            src="/images/services/wedding-arch-sunset.jpg"
-            alt="Combined bridal experience Santorini"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="font-serif text-lg text-charcoal mb-2">The Combined Experience</h3>
-          <p class="text-sm text-grey/70 leading-relaxed mb-4">The ultimate fusion of beauty and organization for a flawless, stress-free result.</p>
-          <p class="text-sm text-forest-green font-medium">Starting from €2,000</p>
-          <span class="text-[10px] font-sans font-medium tracking-[0.1em] uppercase text-forest-green mt-3 inline-block">
-            Get in Touch →
-          </span>
-        </div>
-      </a>
     </div>
   </div>
 </section>
