@@ -1,0 +1,336 @@
+---
+import CTABanner from '../home/CTABanner.astro';
+import PlaceholderImage from '../ui/PlaceholderImage.astro';
+import { portfolioItems } from '../../data/portfolio';
+import enDict from '../../i18n/en/portfolio';
+import elDict from '../../i18n/el/portfolio';
+import { isLocale, useTranslations, getEntry, localizedPath, type Locale } from '../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const dict = { en: enDict, el: elDict };
+const t = useTranslations(dict, lang);
+
+type ImageEntry = { alt: string; caption: string };
+
+function imageKeyFromSrc(src: string): string {
+  const base = src.split('/').pop() ?? '';
+  return base.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '');
+}
+
+function resolveImage(src: string, fallback: { alt: string; caption: string }): ImageEntry {
+  const key = imageKeyFromSrc(src);
+  try {
+    return getEntry<ImageEntry>(dict, lang, `images.${key}`);
+  } catch {
+    return fallback;
+  }
+}
+
+const localized = portfolioItems.map((item) => {
+  const entry = resolveImage(item.src, { alt: item.alt, caption: item.caption });
+  return {
+    src: item.src,
+    alt: entry.alt,
+    caption: entry.caption,
+  };
+});
+
+const featured = localized.slice(0, 10);
+const gallery = localized.slice(10);
+---
+
+<!-- Section 1: Cinematic Hero -->
+<section class="relative min-h-[40vh] lg:min-h-[50vh] overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="/images/portfolio/ceremony-confetti.jpg" alt="" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-near-black/30 via-near-black/50 to-near-black/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-near-black/60 via-transparent to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 container-content px-6 lg:px-12 flex items-end pb-16 lg:pb-20 min-h-[40vh] lg:min-h-[50vh]">
+    <div class="max-w-xl">
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-white/50 mb-4" data-reveal>
+        {t('hero.eyebrow')}
+      </p>
+      <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white leading-tight mb-4" data-reveal>
+        {t('hero.title')}
+      </h1>
+      <div class="w-12 h-px bg-gold/60 mb-5" data-reveal></div>
+      <p class="text-base text-white/60 leading-relaxed max-w-md" data-reveal>
+        {t('hero.subtitle')}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Editorial Intro -->
+<section class="relative section-padding bg-white">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+  <div class="container-content max-w-narrow text-center">
+    <div data-reveal>
+      <div class="inline-flex items-center gap-4 mb-6">
+        <div class="w-8 h-px bg-gold"></div>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-grey">{t('intro.eyebrow')}</p>
+        <div class="w-8 h-px bg-gold"></div>
+      </div>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal mb-6">
+        {t('intro.title')}
+      </h2>
+      <div class="w-12 h-px bg-gold mx-auto mb-6"></div>
+      <p class="text-base text-grey leading-relaxed mb-4">
+        {t('intro.p1')}
+      </p>
+      <p class="text-base text-grey leading-relaxed">
+        {t('intro.p2')}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Featured Highlight -->
+<section class="relative section-padding bg-off-white">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+  <div class="container-content">
+    <!-- Top 2: Large featured -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
+      {featured.slice(0, 2).map((item, i) => (
+        <div
+          class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
+          data-reveal
+          style={`transition-delay: ${i * 100}ms`}
+          data-caption={item.caption}
+          data-src={item.src}
+        >
+          <div class="relative">
+            {i === 0 && <div class="absolute -bottom-4 -right-4 w-full h-full border border-gold rounded-sm -z-10"></div>}
+            <div class="aspect-[3/4] overflow-hidden rounded-sm">
+              <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
+                <PlaceholderImage src={item.src} alt={item.alt} label={item.caption} />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-near-black/80 via-near-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <div>
+                  <div class="w-8 h-px bg-gold mb-3"></div>
+                  <p class="text-lg font-serif italic text-white">{item.caption}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Row 2: 4 secondary featured -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-4 lg:mb-6">
+      {featured.slice(2, 6).map((item, i) => (
+        <div
+          class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
+          data-reveal
+          style={`transition-delay: ${(i + 2) * 100}ms`}
+          data-caption={item.caption}
+          data-src={item.src}
+        >
+          <div class="aspect-[3/4] overflow-hidden rounded-sm">
+            <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
+              <PlaceholderImage src={item.src} alt={item.alt} label={item.caption} />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-near-black/80 via-near-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+              <div>
+                <div class="w-6 h-px bg-gold mb-2"></div>
+                <p class="text-sm font-serif italic text-white">{item.caption}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Row 3: 4 more featured -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      {featured.slice(6, 10).map((item, i) => (
+        <div
+          class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
+          data-reveal
+          style={`transition-delay: ${(i + 6) * 100}ms`}
+          data-caption={item.caption}
+          data-src={item.src}
+        >
+          <div class="aspect-[3/4] overflow-hidden rounded-sm">
+            <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
+              <PlaceholderImage src={item.src} alt={item.alt} label={item.caption} />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-near-black/80 via-near-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+              <div>
+                <div class="w-6 h-px bg-gold mb-2"></div>
+                <p class="text-sm font-serif italic text-white">{item.caption}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: Pull Quote -->
+<section class="py-20 lg:py-24 bg-near-black">
+  <div class="container-content max-w-narrow text-center px-6">
+    <div class="text-5xl font-serif text-white/10 leading-none mb-4">&ldquo;</div>
+    <p class="text-xl md:text-2xl font-serif italic text-white/80 leading-relaxed mb-6" data-reveal>
+      {t('quote.text')}
+    </p>
+    <div class="w-8 h-px bg-white/20 mx-auto mb-4"></div>
+    <p class="text-sm font-sans text-white/40">{t('quote.name')} — {t('quote.location')}</p>
+  </div>
+</section>
+
+<!-- Section 5: Masonry Gallery -->
+<section class="relative section-padding bg-white">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+  <div class="container-content">
+    <div class="text-center mb-12" data-reveal>
+      <div class="inline-flex items-center gap-4 mb-6">
+        <div class="w-8 h-px bg-gold"></div>
+        <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-grey">{t('sections.collection')}</p>
+        <div class="w-8 h-px bg-gold"></div>
+      </div>
+    </div>
+
+    <div class="masonry">
+      {gallery.map((item, i) => (
+        <div
+          class="group relative overflow-hidden rounded-sm cursor-pointer portfolio-item"
+          data-reveal
+          style={`padding-bottom: 133.33%; transition-delay: ${i * 60}ms`}
+          data-caption={item.caption}
+          data-src={item.src}
+        >
+          <div class="absolute inset-0">
+            <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
+              <PlaceholderImage src={item.src} alt={item.alt} label={item.caption} />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-near-black/80 via-near-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+              <div>
+                <div class="w-6 h-px bg-gold mb-2"></div>
+                <p class="text-sm font-serif italic text-white">{item.caption}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Section 6: Reassurance Strip -->
+<section class="bg-off-white border-t border-gray-100/50">
+  <div class="container-content px-6 lg:px-12 py-12 lg:py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12 text-center">
+      <div data-reveal>
+        <div class="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-4 h-4 text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+          </svg>
+        </div>
+        <p class="text-sm font-serif italic text-charcoal mb-1">{t('reassurance.yearsTitle')}</p>
+        <p class="text-xs text-grey/60">{t('reassurance.yearsSubtitle')}</p>
+      </div>
+      <div data-reveal style="transition-delay: 100ms">
+        <div class="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-4 h-4 text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+          </svg>
+        </div>
+        <p class="text-sm font-serif italic text-charcoal mb-1">{t('reassurance.destinationTitle')}</p>
+        <p class="text-xs text-grey/60">{t('reassurance.destinationSubtitle')}</p>
+      </div>
+      <div data-reveal style="transition-delay: 200ms">
+        <div class="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-4 h-4 text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+          </svg>
+        </div>
+        <p class="text-sm font-serif italic text-charcoal mb-1">{t('reassurance.luxuryTitle')}</p>
+        <p class="text-xs text-grey/60">{t('reassurance.luxurySubtitle')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 7: CTA Banner -->
+<CTABanner
+  label={t('cta.label')}
+  title={t('cta.title')}
+  buttonText={t('cta.buttonText')}
+  buttonHref={localizedPath('/contact', lang)}
+/>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="absolute top-6 right-6 text-white/70 hover:text-white z-10" id="lightbox-close" aria-label={t('lightbox.close')}>
+    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <button class="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white z-10 p-2" id="lightbox-prev" aria-label={t('lightbox.prev')}>
+    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white z-10 p-2" id="lightbox-next" aria-label={t('lightbox.next')}>
+    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+  <div id="lightbox-content" class="w-[80vw] max-w-2xl aspect-[3/4] rounded-sm overflow-hidden">
+    <img id="lightbox-img" src="" alt="" class="w-full h-full object-cover" />
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('.portfolio-item');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  let currentIndex = 0;
+  const captions = Array.from(items).map((el) => el.getAttribute('data-caption') || '');
+  const srcs = Array.from(items).map((el) => el.getAttribute('data-src') || '');
+
+  function showImage(index: number) {
+    if (lbImg) {
+      lbImg.src = srcs[index];
+      lbImg.alt = captions[index];
+    }
+  }
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    showImage(index);
+    lightbox?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function navigate(dir: number) {
+    currentIndex = (currentIndex + dir + captions.length) % captions.length;
+    showImage(currentIndex);
+  }
+
+  items.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+  closeBtn?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', () => navigate(-1));
+  nextBtn?.addEventListener('click', () => navigate(1));
+  lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+</script>
