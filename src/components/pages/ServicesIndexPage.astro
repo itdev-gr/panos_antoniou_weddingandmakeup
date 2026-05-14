@@ -1,0 +1,285 @@
+---
+import CTABanner from '../home/CTABanner.astro';
+import enDict from '../../i18n/en/services-index';
+import elDict from '../../i18n/el/services-index';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
+---
+
+<!-- Hero -->
+<section class="relative py-28 lg:py-36 overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="/images/scenery/santorini-bell-tower.jpg" alt="" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-near-black/70 via-near-black/60 to-near-black/80"></div>
+  </div>
+  <div class="relative z-10 container-content text-center px-6">
+    <h2 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white mb-4" data-reveal>
+      {t('hero.title')}
+    </h2>
+    <div class="flex items-center justify-center gap-3 mb-6" data-reveal>
+      <div class="w-10 h-px bg-gold"></div>
+      <div class="w-1 h-1 rounded-full bg-gold"></div>
+      <div class="w-10 h-px bg-gold"></div>
+    </div>
+    <p class="text-base text-white/60 max-w-md mx-auto leading-relaxed" data-reveal>
+      {t('hero.subtitle')}
+    </p>
+  </div>
+</section>
+
+<!-- Service Cards -->
+<section class="section-padding bg-white">
+  <div class="container-content">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20 lg:mb-24">
+
+      <!-- Card 1: Bridal Makeup & Hair -->
+      <a href={localizedPath('/services/bridal-beauty', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/services/bridal-closeup.jpg"
+            alt="Bridal Makeup and Hair"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('cards.bridal.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('cards.bridal.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-6">{t('cards.bridal.price')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2: Wedding Planning & Design -->
+      <a href={localizedPath('/services/wedding-planning', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal style="transition-delay: 100ms">
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/services/ceremony-caldera.jpg"
+            alt="Wedding Planning and Design"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('cards.planning.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('cards.planning.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-6">{t('cards.planning.price')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Pricelist Download -->
+    <div class="border-t border-b border-gold/20 py-12 lg:py-14 mb-20 lg:mb-24 text-center" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-3">
+        {t('pricelist.eyebrow')}
+      </p>
+      <h3 class="text-display-sm font-serif italic text-charcoal mb-4">
+        {t('pricelist.title')}
+      </h3>
+      <p class="text-sm text-grey leading-relaxed mb-7 max-w-md mx-auto">
+        {t('pricelist.body')}
+      </p>
+      <a
+        href="/brochure/panos-antoniou-pricelist.pdf"
+        download
+        class="inline-flex items-center gap-3 px-9 py-4 bg-forest-green text-white text-xs font-sans font-medium tracking-[0.12em] uppercase hover:bg-green-light transition-all duration-300"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        {t('pricelist.cta')}
+      </a>
+    </div>
+
+    <!-- Bridal Beauty: detail cards -->
+    <div class="text-center mb-14" data-reveal>
+      <p class="text-[10px] font-sans font-medium tracking-ultra-wide uppercase text-gold mb-4">
+        {t('detail.eyebrow')}
+      </p>
+      <h2 class="text-display-sm md:text-display font-serif italic text-charcoal">
+        {t('detail.title')}
+      </h2>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8 lg:gap-12 [&>*]:w-full md:[&>*]:w-[calc(50%-1rem)] lg:[&>*]:w-[calc(50%-1.5rem)]">
+
+      <!-- Card: Full Bridal Beauty -->
+      <a href={localizedPath('/services/bridal-beauty#full-bridal-beauty', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/services/bridal-makeup.jpg"
+            alt="Full Bridal Beauty makeup and hair service"
+            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('detail.fullBridal.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('detail.fullBridal.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-6">{t('detail.fullBridal.price')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card: Pre or Next-Day Styling -->
+      <a href={localizedPath('/services/bridal-beauty#pre-or-next-day-styling', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal style="transition-delay: 100ms">
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/services/natural-bridal.jpg"
+            alt="Pre or Next-Day Styling for rehearsal and welcome events"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('detail.preNextDay.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('detail.preNextDay.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-6">{t('detail.preNextDay.price')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card: Bridal Party & Event Beauty -->
+      <a href={localizedPath('/services/bridal-beauty#bridal-party-event-beauty', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/services/natural-blonde-bride.jpg"
+            alt="Bridal party and event beauty makeup and hair styling"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('detail.partyEvent.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('detail.partyEvent.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-2">{t('detail.partyEvent.price')}</p>
+          <p class="text-xs text-grey/70 italic mb-6">{t('detail.partyEvent.note')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card: Double Bridal Glow -->
+      <a href={localizedPath('/services/bridal-beauty#double-bridal-glow', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal style="transition-delay: 100ms">
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/portfolio/luxury-brides-panos.jpg"
+            alt="Double Bridal Glow coordinated beauty experience for two brides"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('detail.doubleGlow.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('detail.doubleGlow.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-6">{t('detail.doubleGlow.price')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card: Groomed & Polished -->
+      <a href={localizedPath('/services/bridal-beauty#groomed-and-polished', lang)} class="group block bg-off-white rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500" data-reveal>
+        <div class="aspect-[3/2] overflow-hidden">
+          <img
+            src="/images/portfolio/couple-floral-arch.jpg"
+            alt="Groomed and Polished coordinated grooming experience for two grooms"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="p-8">
+          <h3 class="text-xl font-serif italic text-charcoal mb-3 group-hover:text-forest-green transition-colors duration-300">
+            {t('detail.groomed.title')}
+          </h3>
+          <p class="text-sm text-grey leading-relaxed mb-4">
+            {t('detail.groomed.desc')}
+          </p>
+          <p class="text-sm font-sans font-medium text-gold mb-6">{t('detail.groomed.price')}</p>
+          <span class="inline-flex items-center gap-2 text-xs font-sans font-medium tracking-widest uppercase text-forest-green group-hover:gap-3 transition-all duration-300">
+            {t('cards.cta')}
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Combined Experience -->
+<section class="py-16 lg:py-20 bg-off-white">
+  <div class="container-content max-w-2xl text-center px-6">
+    <p class="text-[10px] font-sans font-medium tracking-[0.2em] uppercase text-gold mb-4" data-reveal>
+      {t('combined.eyebrow')}
+    </p>
+    <p class="text-base text-grey leading-relaxed mb-8" data-reveal>
+      {t('combined.body')}
+    </p>
+    <a
+      href={localizedPath('/contact', lang)}
+      class="inline-flex items-center justify-center px-9 py-4 bg-gold text-white text-xs font-sans font-medium tracking-[0.12em] uppercase hover:bg-gold-light transition-all duration-300"
+      data-reveal
+    >
+      {t('combined.cta')}
+    </a>
+  </div>
+</section>
+
+<CTABanner
+  title={t('cta.title')}
+  buttonText={t('cta.buttonText')}
+  buttonHref={localizedPath('/contact', lang)}
+/>

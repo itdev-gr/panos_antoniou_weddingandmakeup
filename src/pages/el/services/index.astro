@@ -1,0 +1,12 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import ServicesIndexPage from '../../../components/pages/ServicesIndexPage.astro';
+import enDict from '../../../i18n/en/services-index';
+import elDict from '../../../i18n/el/services-index';
+import { isLocale, useTranslations, type Locale } from '../../../i18n/utils';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
+---
+<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+  <ServicesIndexPage />
+</PageLayout>
