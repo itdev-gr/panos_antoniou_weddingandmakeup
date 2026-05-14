@@ -1,6 +1,7 @@
 ---
 import PageLayout from './PageLayout.astro';
 import Button from '../components/ui/Button.astro';
+import { isLocale, localizedPath, type Locale } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -11,6 +12,9 @@ interface Props {
 }
 
 const { title, description, date, category, image } = Astro.props;
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const backLabel = lang === 'el' ? 'Πίσω στο Blog' : 'Back to Blog';
 ---
 
 <PageLayout title={`${title} — Panos Antoniou Blog`} description={description} transparentHeader={true}>
@@ -46,7 +50,7 @@ const { title, description, date, category, image } = Astro.props;
   <!-- Back to Blog -->
   <section class="pb-20 bg-white">
     <div class="container-content max-w-narrow px-6 text-center">
-      <Button variant="outline" href="/blog">Back to Blog</Button>
+      <Button variant="outline" href={localizedPath('/blog', lang)}>{backLabel}</Button>
     </div>
   </section>
 </PageLayout>
