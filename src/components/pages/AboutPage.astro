@@ -1,0 +1,128 @@
+---
+import CTABanner from '../home/CTABanner.astro';
+import enDict from '../../i18n/en/about';
+import elDict from '../../i18n/el/about';
+import { isLocale, useTranslations, getEntry, localizedPath, type Locale } from '../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const dict = { en: enDict, el: elDict };
+const t = useTranslations(dict, lang);
+
+const milestones = getEntry<{ year: string; title: string; subtitle: string }[]>(dict, lang, 'milestones.items');
+const experienceItems = getEntry<string[]>(dict, lang, 'experience.items');
+---
+
+<!-- Hero -->
+<section class="relative min-h-[55vh] lg:min-h-[65vh] flex items-center justify-center overflow-hidden bg-near-black">
+  <div class="absolute inset-0 bg-gradient-to-b from-near-black via-charcoal/40 to-near-black"></div>
+  <div class="relative z-10 text-center px-6 py-24 lg:py-32 max-w-3xl mx-auto">
+    <h1 class="text-display-lg font-serif text-white mb-6" data-reveal>
+      {t('hero.title')}
+    </h1>
+    <p class="text-lg md:text-xl italic text-white/60 font-serif leading-relaxed" data-reveal>
+      {t('hero.quote')}
+    </p>
+  </div>
+</section>
+
+<!-- Portrait + Bio -->
+<section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <!-- Left: Portrait -->
+      <div data-reveal>
+        <div class="aspect-[4/5] overflow-hidden">
+          <img
+            src="/images/about/panos-at-work.jpg"
+            alt="Panos Antoniou styling a bride at his Santorini studio"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Right: Bio -->
+      <div data-reveal>
+        <h2 class="text-display-sm font-serif text-charcoal mb-6">{t('bio.heading')}</h2>
+        <div class="w-12 h-px bg-gold mb-8"></div>
+
+        <div class="space-y-5 text-base text-grey leading-relaxed">
+          <p>{t('bio.p1')}</p>
+          <p>{t('bio.p2')}</p>
+          <p>
+            {t('bio.p3BeforeFirstLink')}<a
+              href={localizedPath('/services/bridal-beauty', lang)}
+              class="text-forest-green underline underline-offset-2 hover:text-green-light transition-colors"
+            >{t('bio.p3MakeupLink')}</a>{t('bio.p3BetweenLinks')}<a
+              href={localizedPath('/services/wedding-planning', lang)}
+              class="text-forest-green underline underline-offset-2 hover:text-green-light transition-colors"
+            >{t('bio.p3PlanningLink')}</a>{t('bio.p3AfterPlanning')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Career Milestones -->
+<section class="bg-off-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content max-w-narrow">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="text-display-sm font-serif text-charcoal mb-4">{t('milestones.heading')}</h2>
+      <div class="w-12 h-px bg-gold mx-auto"></div>
+    </div>
+
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="absolute left-6 lg:left-1/2 top-0 bottom-0 w-px bg-gold/30 -translate-x-1/2"></div>
+
+      {milestones.map((milestone, index) => {
+        const isLast = index === milestones.length - 1;
+        const isLeft = index % 2 === 0;
+        return (
+          <div class={`relative flex items-start ${isLast ? '' : 'mb-12 lg:mb-16'}`} data-reveal>
+            <div class="absolute left-6 lg:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gold border-2 border-off-white z-10"></div>
+            {isLeft ? (
+              <div class="ml-14 lg:ml-0 lg:w-1/2 lg:pr-12 lg:text-right">
+                <span class="text-sm font-sans font-medium tracking-widest text-gold uppercase">{milestone.year}</span>
+                <h3 class="text-lg font-serif text-charcoal mt-1">{milestone.title}</h3>
+                <p class="text-sm text-grey mt-1">{milestone.subtitle}</p>
+              </div>
+            ) : (
+              <div class="ml-14 lg:ml-auto lg:w-1/2 lg:pl-12">
+                <span class="text-sm font-sans font-medium tracking-widest text-gold uppercase">{milestone.year}</span>
+                <h3 class="text-lg font-serif text-charcoal mt-1">{milestone.title}</h3>
+                <p class="text-sm text-grey mt-1">{milestone.subtitle}</p>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- Selected Experience -->
+<section class="bg-white py-20 lg:py-28 px-6 lg:px-12">
+  <div class="container-content max-w-narrow">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="text-display-sm font-serif text-charcoal mb-4">{t('experience.heading')}</h2>
+      <div class="w-12 h-px bg-gold mx-auto"></div>
+    </div>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 md:gap-y-12 gap-x-8 lg:gap-x-12 text-center" data-reveal>
+      {experienceItems.map((item) => (
+        <li>
+          <div class="w-1 h-1 rounded-full bg-gold/60 mx-auto mb-3"></div>
+          <p class="text-base lg:text-lg font-serif text-charcoal leading-snug">{item}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<CTABanner
+  title={t('cta.title')}
+  buttonText={t('cta.buttonText')}
+  buttonHref={localizedPath('/services', lang)}
+/>
