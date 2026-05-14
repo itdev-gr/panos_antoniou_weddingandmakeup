@@ -23,6 +23,29 @@
   }
 }
 
+/* Language switcher — color tracks parent header state.
+   Default (white-background header): forest-green.
+   When inside #main-header.header-transparent (initial state over hero): white.
+   Scroll handler in Header.astro toggles `.header-transparent`, so colors
+   swap automatically with no JS on the switcher itself. */
+.lang-switcher { color: rgb(27 67 50 / 0.8); }
+.lang-switcher .lang-sep { color: rgb(27 67 50 / 0.3); }
+.lang-switcher .lang-link { color: inherit; }
+.lang-switcher .lang-link:hover { color: rgb(27 67 50); }
+.lang-switcher .lang-link[aria-current="true"] {
+  color: rgb(27 67 50);
+  text-decoration-line: underline;
+  text-decoration-color: rgb(184 151 106 / 0.7);
+  text-underline-offset: 4px;
+}
+#main-header.header-transparent .lang-switcher { color: rgb(255 255 255 / 0.7); }
+#main-header.header-transparent .lang-switcher .lang-sep { color: rgb(255 255 255 / 0.3); }
+#main-header.header-transparent .lang-switcher .lang-link:hover { color: rgb(255 255 255); }
+#main-header.header-transparent .lang-switcher .lang-link[aria-current="true"] {
+  color: rgb(255 255 255);
+  text-decoration-color: rgb(184 151 106 / 0.7);
+}
+
 /* Scroll reveal */
 [data-reveal] {
   opacity: 0;
