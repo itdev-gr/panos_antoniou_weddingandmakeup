@@ -9,12 +9,14 @@ interface Props {
   description?: string;
   image?: string;
   transparentHeader?: boolean;
+  additionalSchema?: Record<string, unknown> | Record<string, unknown>[];
+  ogType?: string;
 }
 
-const { title, description, image, transparentHeader = false } = Astro.props;
+const { title, description, image, transparentHeader = false, additionalSchema, ogType } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} image={image}>
+<BaseLayout title={title} description={description} image={image} additionalSchema={additionalSchema} ogType={ogType}>
   <Header transparent={transparentHeader} />
   <main>
     <slot />

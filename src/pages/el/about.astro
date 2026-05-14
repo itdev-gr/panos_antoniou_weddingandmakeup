@@ -3,12 +3,63 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import AboutPage from '../../components/pages/AboutPage.astro';
 import enDict from '../../i18n/en/about';
 import elDict from '../../i18n/el/about';
-import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
-const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'el';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE}/#panos`,
+  "name": "Panos Antoniou",
+  "givenName": "Panagiotis",
+  "additionalName": "Asteriou",
+  "familyName": "Antoniou",
+  "jobTitle": "Founder, Bridal Makeup Artist & Wedding Planner",
+  "description": "Founder of Panos Antoniou Weddings Makeup & Hair (2010). 25+ years in beauty, former MAC Cosmetics Pro Team member, Athens 2004 Olympic Games artist, Balenciaga Mykonos collaborator.",
+  "image": `${SITE}/images/about/panos-at-work.jpg`,
+  "url": `${SITE}${localizedPath('/about', lang)}`,
+  "worksFor": { "@id": `${SITE}/#business` },
+  "founderOf": { "@id": `${SITE}/#business` },
+  "nationality": { "@type": "Country", "name": "Greece" },
+  "knowsAbout": ["Bridal Makeup", "Hair Styling", "Wedding Planning", "Editorial Photography Styling"],
+  "alumniOf": "MAC Cosmetics Pro Team",
+  "sameAs": [
+    "https://www.instagram.com/weddingsmakeupandhair",
+    "https://www.facebook.com/panosantoniouweddingsmakeupandhair/",
+    "https://www.tiktok.com/@panosantoniouweddings",
+  ],
+};
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "url": `${SITE}${localizedPath('/about', lang)}`,
+  "name": t('meta.title'),
+  "description": t('meta.description'),
+  "mainEntity": { "@id": `${SITE}/#panos` },
+  "isPartOf": { "@id": `${SITE}/#website` },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": lang === 'el' ? 'Σχετικά' : 'About', "item": `${SITE}${localizedPath('/about', lang)}` },
+  ],
+};
 ---
 
-<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/about/panos-at-work.jpg"
+  transparentHeader={true}
+  ogType="profile"
+  additionalSchema={[personSchema, aboutPageSchema, breadcrumbSchema]}
+>
   <AboutPage />
 </PageLayout>

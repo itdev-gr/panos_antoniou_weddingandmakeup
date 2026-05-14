@@ -3,12 +3,55 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import WeddingPlanningPage from '../../components/pages/WeddingPlanningPage.astro';
 import enDict from '../../i18n/en/wedding-planning';
 import elDict from '../../i18n/el/wedding-planning';
-import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
 const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE}/services/wedding-planning#service`,
+  "name": lang === 'el' ? 'Διοργάνωση & Συντονισμός Γάμου' : 'Wedding Planning & Coordination',
+  "serviceType": "Wedding Planning",
+  "description": t('meta.description'),
+  "provider": { "@id": `${SITE}/#business` },
+  "areaServed": [
+    { "@type": "Place", "name": "Santorini" },
+    { "@type": "Place", "name": "Mykonos" },
+    { "@type": "Place", "name": "Athens" },
+    { "@type": "Place", "name": "Greece" },
+    { "@type": "Place", "name": "Worldwide" },
+  ],
+  "offers": [
+    { "@type": "Offer", "name": "Intimate Weddings (up to 30 guests)", "price": "2000", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Grand Celebrations (up to 100 guests)", "price": "4500", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Essential Elopement Package", "price": "7700", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Premium Elopement Experience", "price": "9700", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Proposal Essential", "price": "4500", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Luxury Proposal Design", "price": "6900", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Sailing Experience", "price": "6900", "priceCurrency": "EUR" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": lang === 'el' ? 'Υπηρεσίες' : 'Services', "item": `${SITE}${localizedPath('/services', lang)}` },
+    { "@type": "ListItem", "position": 3, "name": lang === 'el' ? 'Διοργάνωση Γάμου' : 'Wedding Planning', "item": `${SITE}${localizedPath('/services/wedding-planning', lang)}` },
+  ],
+};
 ---
 
-<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/services/ceremony-caldera.jpg"
+  transparentHeader={true}
+  additionalSchema={[serviceSchema, breadcrumbSchema]}
+>
   <WeddingPlanningPage />
 </PageLayout>

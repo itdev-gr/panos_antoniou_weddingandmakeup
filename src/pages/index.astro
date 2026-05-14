@@ -8,7 +8,12 @@ import { isLocale, useTranslations, localizedPath, type Locale } from '../i18n/u
 const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const t = useTranslations({ en: enHome, el: elHome }, lang);
 ---
-<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/hero/hero-santorini-sunset.jpg"
+  transparentHeader={true}
+>
   <HomePage />
   <CTABanner
     title={t('cta.title')}

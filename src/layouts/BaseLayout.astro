@@ -6,9 +6,17 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  additionalSchema?: Record<string, unknown> | Record<string, unknown>[];
+  ogType?: string;
 }
 
-const { title, description = "Luxury bridal makeup & hair services in Santorini, Mykonos, Athens & worldwide. 26+ years of experience crafting unforgettable wedding looks.", image = "/images/logo/panos-logo.png" } = Astro.props;
+const {
+  title,
+  description = "Luxury bridal makeup & hair services in Santorini, Mykonos, Athens & worldwide. 26+ years of experience crafting unforgettable wedding looks.",
+  image = "/images/logo/panos-logo.png",
+  additionalSchema,
+  ogType = "website",
+} = Astro.props;
 
 const currentLocale: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const htmlLang = currentLocale === 'el' ? 'el-GR' : 'en-GB';
@@ -16,6 +24,97 @@ const htmlLang = currentLocale === 'el' ? 'el-GR' : 'en-GB';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const altEnUrl = new URL(altLocalePath(Astro.url.pathname, 'en'), Astro.site);
 const altElUrl = new URL(altLocalePath(Astro.url.pathname, 'el'), Astro.site);
+const ogImageUrl = new URL(image, Astro.site).href;
+
+const SITE_NAME = "Panos Antoniou Weddings";
+const SITE_URL = "https://www.weddingsmakeupandhair.com";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#business`,
+  "name": "Panos Antoniou Weddings Makeup & Hair",
+  "alternateName": ["Panos Antoniou Weddings", "ΠΑΝΑΓΙΩΤΗΣ ΑΣΤΕΡΙΟΥ ΑΝΤΩΝΙΟΥ"],
+  "description": description,
+  "inLanguage": htmlLang,
+  "telephone": "+30-695-562-8019",
+  "email": "events@weddingsmakeupandhair.com",
+  "url": SITE_URL,
+  "image": [
+    `${SITE_URL}/images/logo/panos-logo.png`,
+    `${SITE_URL}/images/hero/hero-santorini-sunset.jpg`,
+    `${SITE_URL}/images/about/panos-at-work.jpg`,
+  ],
+  "logo": `${SITE_URL}/images/logo/panos-logo.png`,
+  "foundingDate": "2010",
+  "founder": {
+    "@type": "Person",
+    "name": "Panos Antoniou",
+    "givenName": "Panagiotis",
+    "additionalName": "Asteriou",
+    "familyName": "Antoniou",
+    "jobTitle": "Founder, Bridal Makeup Artist & Wedding Planner",
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pyrgos Village",
+    "addressRegion": "Santorini",
+    "addressCountry": "GR",
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 36.3892,
+    "longitude": 25.4366,
+  },
+  "areaServed": [
+    { "@type": "Place", "name": "Santorini" },
+    { "@type": "Place", "name": "Mykonos" },
+    { "@type": "Place", "name": "Athens" },
+    { "@type": "Place", "name": "Greece" },
+    { "@type": "Place", "name": "Worldwide" },
+  ],
+  "knowsLanguage": ["en", "el"],
+  "priceRange": "$$$$",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Cash, Credit Card, Bank Transfer, PayPal, Revolut, IRIS",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "21:00",
+    },
+  ],
+  "sameAs": [
+    "https://www.instagram.com/weddingsmakeupandhair",
+    "https://www.facebook.com/panosantoniouweddingsmakeupandhair/",
+    "https://www.tiktok.com/@panosantoniouweddings",
+  ],
+  "vatID": "EL108858849",
+  "taxID": "EL108858849",
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "GEMI",
+    "value": "193542738000",
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  "url": SITE_URL,
+  "name": SITE_NAME,
+  "description": "Luxury bridal makeup, hair and wedding planning in Santorini and worldwide.",
+  "publisher": { "@id": `${SITE_URL}/#business` },
+  "inLanguage": ["en-GB", "el-GR"],
+};
+
+const baseSchemas: Record<string, unknown>[] = [localBusinessSchema, websiteSchema];
+const extra = additionalSchema
+  ? (Array.isArray(additionalSchema) ? additionalSchema : [additionalSchema])
+  : [];
+const allSchemas = [...baseSchemas, ...extra];
 ---
 
 <!DOCTYPE html>
@@ -23,7 +122,12 @@ const altElUrl = new URL(altLocalePath(Astro.url.pathname, 'el'), Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f3933" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/png" href="/images/logo/panos-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalURL} />
 
     <link rel="alternate" hreflang="en" href={altEnUrl} />
@@ -32,44 +136,39 @@ const altElUrl = new URL(altLocalePath(Astro.url.pathname, 'el'), Astro.site);
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Panos Antoniou" />
+    <meta name="publisher" content={SITE_NAME} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site).href} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={htmlLang.replace('-', '_')} />
+    <meta property="og:locale:alternate" content={currentLocale === 'en' ? 'el_GR' : 'en_GB'} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={title} />
 
-    <!-- Google Fonts -->
+    <!-- Resource hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.instagram.com" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Panos Antoniou - Weddings Makeup & Hair",
-      "description": description,
-      "inLanguage": htmlLang,
-      "telephone": "+30-695-562-8019",
-      "email": "events@weddingsmakeupandhair.com",
-      "url": "https://weddingsmakeupandhair.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Pyrgos Village",
-        "addressRegion": "Santorini",
-        "addressCountry": "GR"
-      },
-      "areaServed": ["Santorini", "Mykonos", "Athens", "Greece", "Worldwide"],
-      "priceRange": "$$$$"
-    })} />
+    <!-- JSON-LD: LocalBusiness + WebSite + page-specific schemas -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body class="min-h-screen">
     <slot />

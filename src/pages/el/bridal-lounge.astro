@@ -3,12 +3,60 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import BridalLoungePage from '../../components/pages/BridalLoungePage.astro';
 import enDict from '../../i18n/en/bridal-lounge';
 import elDict from '../../i18n/el/bridal-lounge';
-import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
-const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'el';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE}${localizedPath('/bridal-lounge', lang)}#service`,
+  "name": lang === 'el' ? 'The Bridal Lounge & Makeup Studio Σαντορίνη' : 'The Bridal Lounge & Makeup Studio Santorini',
+  "serviceType": "Bridal Preparation Studio",
+  "description": t('meta.description'),
+  "provider": { "@id": `${SITE}/#business` },
+  "areaServed": [{ "@type": "Place", "name": "Santorini" }],
+  "offers": [
+    { "@type": "Offer", "name": "Private Bridal Preparation", "price": "450", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Bridal Boudoir Studio Use", "price": "60", "priceCurrency": "EUR", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "60", "priceCurrency": "EUR", "unitText": "HOUR" } },
+    { "@type": "Offer", "name": "Professional Makeup Lessons", "price": "150", "priceCurrency": "EUR" },
+  ],
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "@id": `${SITE}${localizedPath('/bridal-lounge', lang)}#place`,
+  "name": "Panos Antoniou Bridal Lounge & Makeup Studio",
+  "description": t('meta.description'),
+  "image": `${SITE}/images/bridal-lounge/bridesmaids-getting-ready.jpg`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pyrgos Village",
+    "addressRegion": "Santorini",
+    "addressCountry": "GR",
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 36.3892, "longitude": 25.4366 },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": "The Bridal Lounge", "item": `${SITE}${localizedPath('/bridal-lounge', lang)}` },
+  ],
+};
 ---
 
-<PageLayout title={t('meta.title')} description={t('meta.description')}>
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/bridal-lounge/bridesmaids-getting-ready.jpg"
+  additionalSchema={[serviceSchema, placeSchema, breadcrumbSchema]}
+>
   <BridalLoungePage />
 </PageLayout>

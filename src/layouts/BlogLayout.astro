@@ -9,15 +9,59 @@ interface Props {
   date: string;
   category: string;
   image: string;
+  datePublished?: string;
+  slug?: string;
 }
 
-const { title, description, date, category, image } = Astro.props;
+const { title, description, date, category, image, datePublished, slug } = Astro.props;
 
 const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const backLabel = lang === 'el' ? 'Πίσω στο Blog' : 'Back to Blog';
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+const pageUrl = `${SITE}${Astro.url.pathname}`;
+const absoluteImage = image?.startsWith('http') ? image : `${SITE}${image}`;
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${pageUrl}#article`,
+  "headline": title,
+  "description": description,
+  "image": absoluteImage,
+  "datePublished": datePublished || date,
+  "dateModified": datePublished || date,
+  "inLanguage": lang === 'el' ? 'el-GR' : 'en-GB',
+  "articleSection": category,
+  "url": pageUrl,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+  "author": {
+    "@type": "Person",
+    "@id": `${SITE}/#panos`,
+    "name": "Panos Antoniou",
+    "url": `${SITE}${localizedPath('/about', lang)}`,
+  },
+  "publisher": { "@id": `${SITE}/#business` },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE}${localizedPath('/blog', lang)}` },
+    { "@type": "ListItem", "position": 3, "name": title, "item": pageUrl },
+  ],
+};
 ---
 
-<PageLayout title={`${title} — Panos Antoniou Blog`} description={description} transparentHeader={true}>
+<PageLayout
+  title={`${title} — Panos Antoniou Blog`}
+  description={description}
+  image={image}
+  ogType="article"
+  transparentHeader={true}
+  additionalSchema={[articleSchema, breadcrumbSchema]}
+>
   <!-- Hero -->
   <section class="relative min-h-[45vh] lg:min-h-[55vh] bg-gradient-to-b from-forest-green via-forest-green/95 to-green-light overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,151,106,0.1),transparent_70%)]"></div>

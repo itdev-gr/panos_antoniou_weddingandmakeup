@@ -3,10 +3,41 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ServicesIndexPage from '../../components/pages/ServicesIndexPage.astro';
 import enDict from '../../i18n/en/services-index';
 import elDict from '../../i18n/el/services-index';
-import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
 const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${SITE}${localizedPath('/services', lang)}#services`,
+  "name": lang === 'el' ? 'Υπηρεσίες — Panos Antoniou Weddings' : 'Services — Panos Antoniou Weddings',
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": `${SITE}${localizedPath('/services/bridal-beauty', lang)}`, "name": lang === 'el' ? 'Νυφικό Μακιγιάζ & Κόμμωση' : 'Bridal Makeup & Hair' },
+    { "@type": "ListItem", "position": 2, "url": `${SITE}${localizedPath('/services/wedding-planning', lang)}`, "name": lang === 'el' ? 'Διοργάνωση & Συντονισμός Γάμου' : 'Wedding Planning & Coordination' },
+    { "@type": "ListItem", "position": 3, "url": `${SITE}${localizedPath('/bridal-lounge', lang)}`, "name": "The Bridal Lounge" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": lang === 'el' ? 'Υπηρεσίες' : 'Services', "item": `${SITE}${localizedPath('/services', lang)}` },
+  ],
+};
 ---
-<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/scenery/santorini-bell-tower.jpg"
+  transparentHeader={true}
+  additionalSchema={[itemListSchema, breadcrumbSchema]}
+>
   <ServicesIndexPage />
 </PageLayout>

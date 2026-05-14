@@ -3,12 +3,40 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import BookingTermsPage from '../../components/pages/BookingTermsPage.astro';
 import enDict from '../../i18n/en/booking-terms';
 import elDict from '../../i18n/el/booking-terms';
-import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
-const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'el';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE}${localizedPath('/booking-terms', lang)}#webpage`,
+  "url": `${SITE}${localizedPath('/booking-terms', lang)}`,
+  "name": t('meta.title'),
+  "description": t('meta.description'),
+  "isPartOf": { "@id": `${SITE}/#website` },
+  "about": { "@id": `${SITE}/#business` },
+  "inLanguage": lang === 'el' ? 'el-GR' : 'en-GB',
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": lang === 'el' ? 'Όροι Κράτησης' : 'Booking Terms', "item": `${SITE}${localizedPath('/booking-terms', lang)}` },
+  ],
+};
 ---
 
-<PageLayout title={t('meta.title')} description={t('meta.description')}>
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/scenery/santorini-village.jpg"
+  additionalSchema={[webPageSchema, breadcrumbSchema]}
+>
   <BookingTermsPage />
 </PageLayout>

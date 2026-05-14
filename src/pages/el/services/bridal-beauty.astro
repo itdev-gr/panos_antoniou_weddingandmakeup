@@ -3,12 +3,56 @@ import PageLayout from '../../../layouts/PageLayout.astro';
 import BridalBeautyPage from '../../../components/pages/BridalBeautyPage.astro';
 import enDict from '../../../i18n/en/bridal-beauty';
 import elDict from '../../../i18n/el/bridal-beauty';
-import { isLocale, useTranslations, type Locale } from '../../../i18n/utils';
+import { isLocale, useTranslations, localizedPath, type Locale } from '../../../i18n/utils';
 
 const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'el';
 const t = useTranslations({ en: enDict, el: elDict }, lang);
+
+const SITE = 'https://www.weddingsmakeupandhair.com';
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE}/el/services/bridal-beauty#service`,
+  "name": lang === 'el' ? 'Νυφικό Μακιγιάζ & Κόμμωση' : 'Bridal Makeup & Hair',
+  "serviceType": "Bridal Makeup and Hair Styling",
+  "description": t('meta.description'),
+  "provider": { "@id": `${SITE}/#business` },
+  "areaServed": [
+    { "@type": "Place", "name": "Santorini" },
+    { "@type": "Place", "name": "Mykonos" },
+    { "@type": "Place", "name": "Athens" },
+    { "@type": "Place", "name": "Greece" },
+    { "@type": "Place", "name": "Worldwide" },
+  ],
+  "offers": [
+    { "@type": "Offer", "name": "Full Bridal Beauty (Makeup & Hair)", "price": "560", "priceCurrency": "EUR", "url": `${SITE}${localizedPath('/services/bridal-beauty', lang)}#full-bridal-beauty` },
+    { "@type": "Offer", "name": "Bridal Makeup Only", "price": "280", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Bridal Hair Only", "price": "290", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Bridal Trial", "price": "100", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Pre or Next-Day Styling", "price": "250", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Bridesmaids Makeup & Hair", "price": "200", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Double Bridal Glow (Same-Sex Wedding)", "price": "1000", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Groomed & Polished (Same-Sex Wedding)", "price": "300", "priceCurrency": "EUR" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": lang === 'el' ? 'Αρχική' : 'Home', "item": `${SITE}${localizedPath('/', lang)}` },
+    { "@type": "ListItem", "position": 2, "name": lang === 'el' ? 'Υπηρεσίες' : 'Services', "item": `${SITE}${localizedPath('/services', lang)}` },
+    { "@type": "ListItem", "position": 3, "name": lang === 'el' ? 'Νυφική Ομορφιά' : 'Bridal Beauty', "item": `${SITE}${localizedPath('/services/bridal-beauty', lang)}` },
+  ],
+};
 ---
 
-<PageLayout title={t('meta.title')} description={t('meta.description')} transparentHeader={true}>
+<PageLayout
+  title={t('meta.title')}
+  description={t('meta.description')}
+  image="/images/services/bridal-closeup.jpg"
+  transparentHeader={true}
+  additionalSchema={[serviceSchema, breadcrumbSchema]}
+>
   <BridalBeautyPage />
 </PageLayout>
