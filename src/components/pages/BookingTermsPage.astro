@@ -1,0 +1,122 @@
+---
+import enDict from '../../i18n/en/booking-terms';
+import elDict from '../../i18n/el/booking-terms';
+import { isLocale, useTranslations, getEntry, localizedPath, type Locale } from '../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const dict = { en: enDict, el: elDict };
+const t = useTranslations(dict, lang);
+
+const bookingDepositItems = getEntry<string[]>(dict, lang, 'sections.bookingDeposit.items');
+const paymentItems = getEntry<string[]>(dict, lang, 'sections.payment.items');
+const paymentMethodItems = getEntry<string[]>(dict, lang, 'sections.paymentMethods.items');
+const cancellationItems = getEntry<string[]>(dict, lang, 'sections.cancellations.items');
+---
+
+<!-- Hero -->
+<section class="relative py-24 lg:py-32 overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="/images/scenery/santorini-village.jpg" alt="" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-forest-green/80 via-forest-green/70 to-green-light/80"></div>
+  </div>
+  <div class="relative z-10 container-content text-center px-6">
+    <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white mb-4" data-reveal>
+      {t('hero.title')}
+    </h1>
+    <div class="flex items-center justify-center gap-3" data-reveal>
+      <div class="w-10 h-px bg-gold"></div>
+      <div class="w-1 h-1 rounded-full bg-gold"></div>
+      <div class="w-10 h-px bg-gold"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Content -->
+<section class="bg-white">
+  <div class="container-content px-6 lg:px-12 py-20 lg:py-28 max-w-3xl">
+    <p class="text-base text-grey leading-relaxed mb-12" data-reveal>
+      {t('intro')}
+    </p>
+
+    <!-- Booking & Deposit -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.bookingDeposit.heading')}</h2>
+      <ul class="space-y-3 text-base text-grey leading-relaxed list-disc pl-5">
+        {bookingDepositItems.map((item) => (
+          <li set:html={item} />
+        ))}
+      </ul>
+    </div>
+
+    <!-- Payment -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.payment.heading')}</h2>
+      <ul class="space-y-3 text-base text-grey leading-relaxed list-disc pl-5">
+        {paymentItems.map((item) => (
+          <li set:html={item} />
+        ))}
+      </ul>
+    </div>
+
+    <!-- Payment Methods -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.paymentMethods.heading')}</h2>
+      <ul class="grid grid-cols-2 gap-3 text-base text-grey leading-relaxed">
+        {paymentMethodItems.map((item) => (
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Cancellations -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.cancellations.heading')}</h2>
+      <ul class="space-y-3 text-base text-grey leading-relaxed list-disc pl-5">
+        {cancellationItems.map((item) => (
+          <li set:html={item} />
+        ))}
+      </ul>
+    </div>
+
+    <!-- Delays -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.delays.heading')}</h2>
+      <p class="text-base text-grey leading-relaxed">
+        {t('sections.delays.body')}
+      </p>
+    </div>
+
+    <!-- Travel Fees -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.travelFees.heading')}</h2>
+      <p class="text-base text-grey leading-relaxed">
+        {t('sections.travelFees.body')}
+      </p>
+    </div>
+
+    <!-- Team Assignment -->
+    <div class="mb-12" data-reveal>
+      <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">{t('sections.teamAssignment.heading')}</h2>
+      <p class="text-base text-grey leading-relaxed">
+        {t('sections.teamAssignment.body')}
+      </p>
+    </div>
+
+    <!-- Ornamental divider -->
+    <div class="flex items-center justify-center gap-3 pt-8 border-t border-gold/20">
+      <div class="w-12 h-px bg-gold/40"></div>
+      <div class="w-1.5 h-1.5 rounded-full border border-gold/50"></div>
+      <div class="w-12 h-px bg-gold/40"></div>
+    </div>
+
+    <p class="text-sm text-grey/80 text-center mt-8 italic">
+      {t('contactNote.beforeLink')}<a
+        href={localizedPath('/contact', lang)}
+        class="text-forest-green hover:text-gold transition-colors duration-300 underline"
+      >{t('contactNote.linkText')}</a>{t('contactNote.afterLink')}
+    </p>
+  </div>
+</section>

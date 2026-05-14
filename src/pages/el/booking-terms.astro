@@ -1,0 +1,14 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import BookingTermsPage from '../../components/pages/BookingTermsPage.astro';
+import enDict from '../../i18n/en/booking-terms';
+import elDict from '../../i18n/el/booking-terms';
+import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
+---
+
+<PageLayout title={t('meta.title')} description={t('meta.description')}>
+  <BookingTermsPage />
+</PageLayout>

@@ -1,113 +1,14 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import BookingTermsPage from '../components/pages/BookingTermsPage.astro';
+import enDict from '../i18n/en/booking-terms';
+import elDict from '../i18n/el/booking-terms';
+import { isLocale, useTranslations, type Locale } from '../i18n/utils';
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
 ---
 
-<PageLayout
-  title="Booking Terms & Conditions | Panos Antoniou Weddings"
-  description="Review the booking, deposit, payment, and cancellation terms for Panos Antoniou Weddings services — bridal makeup and hair, wedding planning and design."
->
-  <!-- Hero -->
-  <section class="relative py-24 lg:py-32 overflow-hidden">
-    <div class="absolute inset-0">
-      <img src="/images/scenery/santorini-village.jpg" alt="" class="w-full h-full object-cover object-center" />
-      <div class="absolute inset-0 bg-gradient-to-b from-forest-green/80 via-forest-green/70 to-green-light/80"></div>
-    </div>
-    <div class="relative z-10 container-content text-center px-6">
-      <h1 class="text-display-sm md:text-display lg:text-display-lg font-serif italic text-white mb-4" data-reveal>
-        Booking Terms & Conditions
-      </h1>
-      <div class="flex items-center justify-center gap-3" data-reveal>
-        <div class="w-10 h-px bg-gold"></div>
-        <div class="w-1 h-1 rounded-full bg-gold"></div>
-        <div class="w-10 h-px bg-gold"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Content -->
-  <section class="bg-white">
-    <div class="container-content px-6 lg:px-12 py-20 lg:py-28 max-w-3xl">
-      <p class="text-base text-grey leading-relaxed mb-12" data-reveal>
-        The following terms apply to all bookings with Panos Antoniou Weddings. Please read carefully before confirming your reservation.
-      </p>
-
-      <!-- Booking & Deposit -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Booking & Deposit</h2>
-        <ul class="space-y-3 text-base text-grey leading-relaxed list-disc pl-5">
-          <li>For Makeup & Hair services, a <strong class="text-charcoal font-medium">30% non-refundable deposit</strong> is required to secure the booking.</li>
-          <li>For Wedding Planning services, a <strong class="text-charcoal font-medium">40% non-refundable deposit</strong> is required.</li>
-          <li>The deposit is non-refundable but can be transferred to a new date, subject to availability.</li>
-        </ul>
-      </div>
-
-      <!-- Payment -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Payment</h2>
-        <ul class="space-y-3 text-base text-grey leading-relaxed list-disc pl-5">
-          <li>For weddings, the remaining balance is due <strong class="text-charcoal font-medium">21 days prior to the event</strong> or during the pre-wedding meeting.</li>
-          <li>For makeup & hair services, the balance is due on the wedding day or the day before.</li>
-        </ul>
-      </div>
-
-      <!-- Payment Methods -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Payment Methods</h2>
-        <ul class="grid grid-cols-2 gap-3 text-base text-grey leading-relaxed">
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>PayPal</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>Revolut</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>Payment Link</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>IRIS</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>Bank Transfer</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>Card</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0"></span>Cash (up to €499)</li>
-        </ul>
-      </div>
-
-      <!-- Cancellations -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Cancellations</h2>
-        <ul class="space-y-3 text-base text-grey leading-relaxed list-disc pl-5">
-          <li>Cancellations made <strong class="text-charcoal font-medium">more than 8 months</strong> before the event: no additional charge beyond the deposit.</li>
-          <li>Cancellations made <strong class="text-charcoal font-medium">less than 8 months</strong> before the event: 75% of the total amount is due.</li>
-          <li><strong class="text-charcoal font-medium">Last-minute cancellations:</strong> 100% of the total amount is due.</li>
-        </ul>
-      </div>
-
-      <!-- Delays -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Delays</h2>
-        <p class="text-base text-grey leading-relaxed">
-          Client delays may affect the schedule and final results.
-        </p>
-      </div>
-
-      <!-- Travel Fees -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Travel Fees</h2>
-        <p class="text-base text-grey leading-relaxed">
-          Additional travel fees may apply depending on location.
-        </p>
-      </div>
-
-      <!-- Team Assignment -->
-      <div class="mb-12" data-reveal>
-        <h2 class="text-2xl md:text-3xl font-serif italic text-charcoal mb-4">Team Assignment</h2>
-        <p class="text-base text-grey leading-relaxed">
-          Services are provided either by Panos Antoniou or by our trusted collaborators, maintaining the same high standard of quality.
-        </p>
-      </div>
-
-      <!-- Ornamental divider -->
-      <div class="flex items-center justify-center gap-3 pt-8 border-t border-gold/20">
-        <div class="w-12 h-px bg-gold/40"></div>
-        <div class="w-1.5 h-1.5 rounded-full border border-gold/50"></div>
-        <div class="w-12 h-px bg-gold/40"></div>
-      </div>
-
-      <p class="text-sm text-grey/80 text-center mt-8 italic">
-        For any questions about these terms, please <a href="/contact" class="text-forest-green hover:text-gold transition-colors duration-300 underline">contact us</a>.
-      </p>
-    </div>
-  </section>
+<PageLayout title={t('meta.title')} description={t('meta.description')}>
+  <BookingTermsPage />
 </PageLayout>
