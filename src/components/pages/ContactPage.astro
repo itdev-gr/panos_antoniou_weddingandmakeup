@@ -330,13 +330,13 @@ const t = useTranslations({ en: enDict, el: elDict }, lang);
         if (successEl) successEl.style.display = 'block';
         form.reset();
       } else {
-        if (import.meta.env.DEV) console.error('Web3Forms response not ok', data);
+        console.error('[contact-form] Web3Forms rejected submission', { status: response.status, data });
         errorEl?.classList.remove('hidden');
         if (submitBtn) submitBtn.disabled = false;
         if (submitLabel) submitLabel.textContent = defaultLabel;
       }
     } catch (err) {
-      if (import.meta.env.DEV) console.error('Contact form submission failed', err);
+      console.error('[contact-form] Network request failed (likely ad blocker / extension / offline)', err);
       errorEl?.classList.remove('hidden');
       if (submitBtn) submitBtn.disabled = false;
       if (submitLabel) submitLabel.textContent = defaultLabel;
