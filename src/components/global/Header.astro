@@ -1,16 +1,26 @@
 ---
+import { isLocale, localizedPath, type Locale } from '../../i18n/utils';
+import { common } from '../../i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
 interface Props {
   transparent?: boolean;
 }
 const { transparent = false } = Astro.props;
 
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = common[lang];
+
 const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "The Bridal Lounge", href: "/bridal-lounge" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Blog", href: "/blog" },
+  { label: t.nav.about, href: localizedPath('/about', lang) },
+  { label: t.nav.services, href: localizedPath('/services', lang) },
+  { label: t.nav.bridalLounge, href: localizedPath('/bridal-lounge', lang) },
+  { label: t.nav.portfolio, href: localizedPath('/portfolio', lang) },
+  { label: t.nav.blog, href: localizedPath('/blog', lang) },
 ];
+
+const contactHref = localizedPath('/contact', lang);
+const homeHref = localizedPath('/', lang);
 ---
 
 <header
@@ -22,7 +32,7 @@ const navLinks = [
 >
   <div class="container-content flex items-center justify-between px-5 py-3 lg:px-10 lg:py-4">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 group">
+    <a href={homeHref} class="flex items-center gap-3 group">
       <img
         id="header-logo"
         src="/images/logo/panos-logo.png"
@@ -49,10 +59,13 @@ const navLinks = [
       ))}
     </nav>
 
-    <!-- CTA + Mobile Toggle -->
+    <!-- CTA + Switcher + Mobile Toggle -->
     <div class="flex items-center gap-4">
+      <div class="hidden lg:block">
+        <LanguageSwitcher variant="desktop" onDark={transparent} />
+      </div>
       <a
-        href="/contact"
+        href={contactHref}
         class:list={[
           "hidden md:inline-flex px-7 py-3 text-sm font-sans font-semibold tracking-widest uppercase transition-all duration-300 rounded-sm shadow-lg hover:shadow-xl hover:scale-105",
           transparent
@@ -60,7 +73,7 @@ const navLinks = [
             : "bg-forest-green text-white hover:bg-gold hover:text-white",
         ]}
       >
-        Book Your Date
+        {t.cta.bookYourDate}
       </a>
 
       <!-- Mobile Hamburger -->
@@ -105,12 +118,16 @@ const navLinks = [
         ))}
       </nav>
 
+      <div class="mt-6 pt-6 border-t border-gray-100">
+        <LanguageSwitcher variant="mobile" />
+      </div>
+
       <div class="mt-auto pt-8">
         <a
-          href="/contact"
+          href={contactHref}
           class="block text-center px-6 py-3 bg-forest-green text-white text-xs font-sans font-medium tracking-widest uppercase rounded-sm hover:bg-green-light transition-colors duration-300"
         >
-          Book Your Date
+          {t.cta.bookYourDate}
         </a>
         <div class="flex justify-center gap-6 mt-6">
           <a href="https://instagram.com/weddingsmakeupandhair" target="_blank" rel="noopener" class="text-grey hover:text-forest-green transition-colors" aria-label="Instagram">
@@ -164,7 +181,7 @@ const navLinks = [
           el.classList.remove('text-white/90', 'text-white/80', 'text-white', 'hover:text-white');
           el.classList.add('text-forest-green', 'hover:text-green-light');
         });
-        const bookBtn = header.querySelector('a[href="/contact"]');
+        const bookBtn = header.querySelector('a[href$="/contact"], a[href$="/el/contact"]');
         if (bookBtn) {
           bookBtn.classList.remove('bg-white', 'text-forest-green', 'hover:bg-gold', 'hover:text-white');
           bookBtn.classList.add('bg-forest-green', 'text-white', 'hover:bg-gold', 'hover:text-white');
@@ -186,7 +203,7 @@ const navLinks = [
           el.classList.add('text-white/90', 'hover:text-white');
         });
         // Restore Book Now button
-        const bookBtnRestore = header.querySelector('a[href="/contact"]');
+        const bookBtnRestore = header.querySelector('a[href$="/contact"], a[href$="/el/contact"]');
         if (bookBtnRestore) {
           bookBtnRestore.classList.remove('bg-forest-green', 'text-white');
           bookBtnRestore.classList.add('bg-white', 'text-forest-green');

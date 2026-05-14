@@ -1,0 +1,70 @@
+---
+import { altLocalePath, isLocale, type Locale } from '../../i18n/utils';
+import { common } from '../../i18n';
+
+interface Props {
+  variant?: 'desktop' | 'mobile';
+  onDark?: boolean;
+}
+const { variant = 'desktop', onDark = false } = Astro.props;
+
+const currentLocale: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+
+const enHref = altLocalePath(Astro.url.pathname, 'en');
+const elHref = altLocalePath(Astro.url.pathname, 'el');
+
+const tCurrent = common[currentLocale].switcher;
+---
+
+{variant === 'desktop' && (
+  <div
+    class:list={[
+      'flex items-center gap-1 text-[11px] font-sans font-medium tracking-[0.18em] uppercase',
+      onDark ? 'text-white/70' : 'text-forest-green/80',
+    ]}
+    aria-label={tCurrent.label}
+  >
+    <a
+      href={enHref}
+      aria-current={currentLocale === 'en' ? 'true' : undefined}
+      class:list={[
+        'px-1.5 py-1 transition-colors duration-300',
+        currentLocale === 'en'
+          ? (onDark ? 'text-white underline underline-offset-4 decoration-gold/70' : 'text-forest-green underline underline-offset-4 decoration-gold/70')
+          : (onDark ? 'hover:text-white' : 'hover:text-forest-green'),
+      ]}
+    >EN</a>
+    <span class:list={[onDark ? 'text-white/30' : 'text-forest-green/30']}>/</span>
+    <a
+      href={elHref}
+      aria-current={currentLocale === 'el' ? 'true' : undefined}
+      class:list={[
+        'px-1.5 py-1 transition-colors duration-300',
+        currentLocale === 'el'
+          ? (onDark ? 'text-white underline underline-offset-4 decoration-gold/70' : 'text-forest-green underline underline-offset-4 decoration-gold/70')
+          : (onDark ? 'hover:text-white' : 'hover:text-forest-green'),
+      ]}
+    >EL</a>
+  </div>
+)}
+
+{variant === 'mobile' && (
+  <div class="flex items-center gap-2 text-sm font-sans font-medium tracking-widest uppercase text-charcoal/80" aria-label={tCurrent.label}>
+    <a
+      href={enHref}
+      aria-current={currentLocale === 'en' ? 'true' : undefined}
+      class:list={[
+        'px-3 py-2 border rounded-sm transition-colors duration-300',
+        currentLocale === 'en' ? 'bg-forest-green text-white border-forest-green' : 'border-gray-200 hover:border-forest-green',
+      ]}
+    >EN</a>
+    <a
+      href={elHref}
+      aria-current={currentLocale === 'el' ? 'true' : undefined}
+      class:list={[
+        'px-3 py-2 border rounded-sm transition-colors duration-300',
+        currentLocale === 'el' ? 'bg-forest-green text-white border-forest-green' : 'border-gray-200 hover:border-forest-green',
+      ]}
+    >EL</a>
+  </div>
+)}

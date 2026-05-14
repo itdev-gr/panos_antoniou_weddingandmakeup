@@ -7,6 +7,13 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
   compressHTML: true,
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'el'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
@@ -25,6 +32,13 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-GB',
+          el: 'el-GR',
+        },
+      },
     }),
   ],
 });

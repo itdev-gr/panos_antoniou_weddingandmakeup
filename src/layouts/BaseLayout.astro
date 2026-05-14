@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { isLocale, altLocalePath, type Locale } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -8,16 +9,26 @@ interface Props {
 }
 
 const { title, description = "Luxury bridal makeup & hair services in Santorini, Mykonos, Athens & worldwide. 26+ years of experience crafting unforgettable wedding looks.", image = "/images/logo/panos-logo.png" } = Astro.props;
+
+const currentLocale: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const htmlLang = currentLocale === 'el' ? 'el-GR' : 'en-GB';
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const altEnUrl = new URL(altLocalePath(Astro.url.pathname, 'en'), Astro.site);
+const altElUrl = new URL(altLocalePath(Astro.url.pathname, 'el'), Astro.site);
 ---
 
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/images/logo/panos-logo.png" />
     <link rel="canonical" href={canonicalURL} />
+
+    <link rel="alternate" hreflang="en" href={altEnUrl} />
+    <link rel="alternate" hreflang="el" href={altElUrl} />
+    <link rel="alternate" hreflang="x-default" href={altEnUrl} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -28,6 +39,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site).href} />
+    <meta property="og:locale" content={htmlLang.replace('-', '_')} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -45,6 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "@type": "LocalBusiness",
       "name": "Panos Antoniou - Weddings Makeup & Hair",
       "description": description,
+      "inLanguage": htmlLang,
       "telephone": "+30-695-562-8019",
       "email": "events@weddingsmakeupandhair.com",
       "url": "https://weddingsmakeupandhair.com",
