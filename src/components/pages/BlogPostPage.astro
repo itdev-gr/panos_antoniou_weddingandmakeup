@@ -1,0 +1,16 @@
+---
+import enDict from '../../i18n/en/blog';
+import elDict from '../../i18n/el/blog';
+import { isLocale, useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props {
+  postKey: string;
+}
+
+const { postKey } = Astro.props;
+
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
+---
+
+<Fragment set:html={t(`${postKey}.body`)} />

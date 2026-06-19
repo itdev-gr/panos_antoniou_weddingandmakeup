@@ -1,3 +1,5 @@
+import { newIndexPosts, newPostContent } from './new-blog-posts';
+
 export default {
   index: {
     meta: {
@@ -11,6 +13,7 @@ export default {
       subtitle: 'Tips, stories, and inspiration from the world of luxury bridal beauty.',
     },
     posts: {
+      ...newIndexPosts,
       santoriniDreamWedding: {
         title: 'How to Have the Perfect Santorini Dream Wedding',
         slug: '/blog/santorini-dream-wedding',
@@ -167,4 +170,6 @@ export default {
       </p>
     `,
   },
+
+  ...newPostContent,
 };

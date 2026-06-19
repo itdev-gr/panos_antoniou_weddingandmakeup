@@ -1,0 +1,21 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import BlogPostPage from '../../../components/pages/BlogPostPage.astro';
+import enDict from '../../../i18n/en/blog';
+import elDict from '../../../i18n/el/blog';
+import { isLocale, useTranslations, type Locale } from '../../../i18n/utils';
+
+const postKey = 'elopingSantorini2026';
+const lang: Locale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'en';
+const t = useTranslations({ en: enDict, el: elDict }, lang);
+---
+
+<BlogLayout
+  title={t(`${postKey}.meta.title`)}
+  description={t(`${postKey}.meta.description`)}
+  date={t(`${postKey}.date`)}
+  category={t(`${postKey}.category`)}
+  image={t(`${postKey}.image`)}
+>
+  <BlogPostPage postKey={postKey} />
+</BlogLayout>

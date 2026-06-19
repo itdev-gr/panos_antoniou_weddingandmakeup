@@ -18,11 +18,18 @@ type Post = {
 };
 
 const postsObj = getEntry<Record<string, Post>>(dict, lang, 'index.posts');
-const posts: Post[] = [
-  postsObj.santoriniDreamWedding,
-  postsObj.weddingBeautician,
-  postsObj.bestWeddingMakeupServices,
+const postOrder = [
+  'bridalBoudoirLounge',
+  'santoriniWeddingVenue',
+  'marriageProposalSantorini',
+  'sameSexWeddingsSantorini',
+  'elopingSantorini2026',
+  'santoriniWeddingMakeup',
+  'santoriniDreamWedding',
+  'weddingBeautician',
+  'bestWeddingMakeupServices',
 ];
+const posts: Post[] = postOrder.map((key) => postsObj[key]).filter(Boolean);
 ---
 
 <!-- Cinematic Hero -->
